@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments for Homepage</title>
+</head>
+<body>
+<nav th:fragment="navbar" class="navbar" role="navigation">
+    <div class="navbar-brand">
+        <div class="title-container">
+            <a href="/">Library System</a>
+        </div>
+    </div>
+    <div class="navbar-menu">
+        <div class="navbar-start">
+            <div class="navbar-item">
+                <input id="search_query" class="search" type="text" placeholder="Search Books or Library"/>
+            </div>
+            <div class="navbar-item">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <button class="button is-primary"
+                                onclick="location.href = '/search?q=' + document.getElementById('search_query').value;">
+                            <strong>Search</strong>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    <!--                    <a class="button">-->
+                    <!--                        <strong>Sign In as client</strong>-->
+                    <!--                    </a>-->
+                    <!--                    <div class="buttons">-->
+                    <!--                        <button class="button is-primary" onclick="location.href = window.location.href = 'https://www.baidu.com'">-->
+                    <!--                            <strong>Sign In as client</strong>-->
+                    <!--                        </button>-->
+
+
+                    <!--                </div>-->
+                    <!--                <div class="buttons">-->
+                    <!--                    add one more button for separate the login of User and admin-->
+                    <a class="button" onclick="location.href = window.location.href = '/userlogin'">
+                        <strong>Sign In as User</strong>
+                    </a>
+                    <a class="button" onclick="location.href = window.location.href = '/adminlogin'">
+                        <strong>Sign In as Admin</strong>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!--https://bulma.io/documentation/columns/sizes/-->
+<div th:fragment="infoModal" class="modal" id="infoModal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p id="modalTitle" class="modal-card-title">Modal title</p>
+            <button class="delete" aria-label="close" th:onclick="hideModal()"></button>
+        </header>
+        
+        <footer class="modal-card-foot">
+            <button class="button" th:onclick="hideModal()">Close</button>
+        </footer>
+    </div>
+</div>
+</body>
+</html>

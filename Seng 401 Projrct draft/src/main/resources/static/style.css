@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+* {
+    font-family: 'Lato', sans-serif;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.title-container {
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar {
+    padding: 0px 30px;
+    box-shadow: 0 0px 5px;
+    //background-color: grey;
+}
+
+input[type="text"] {
+    padding: 10px 16px;
+    border: 1px solid grey;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+input.search {
+    margin-left: 24px;
+    width: 300px;
+}
+
+.navbar2 {
+    padding: 0px 30px;
+//background-color: grey;
+}
+
+.center {
+    max-width: 968px;
+    margin: 40px auto;
+}
+
+.jobs {
+
+}
+
+.job-item {
+    margin: 10px 40px;
+    padding: 22px;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 0 5px;
+}
+
+.job-item .tags {
+    display: flex;
+    align-content: flex-start;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    margin: 16px 0;
+    gap: 5px;
+}
+
+.job-item .additional {
+    margin: 16px 0;
+}
+
+.tags .tag {
+}
+
+.job-item .bottom {
+    margin-top: 10px;
+}
+
+.row-item {
+    margin: 0;
+}
+
+.row-item .title {
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0 0 0 0;
+}
+
+.row-item .text {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.row-item .input {
+    margin: 4px 0;
+}
+

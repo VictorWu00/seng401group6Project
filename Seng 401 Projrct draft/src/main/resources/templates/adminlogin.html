@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:line-height="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Career Advice</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="/style.css"/>
+    <style>
+body {
+                background: #F7F7F7;
+            }
+.form {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-left: -80px;
+                margin-top: -100px;
+                height: 100px;
+                width: 0px;
+                font-size: 24px;
+                border:10px solid grey
+                -webkit-box-shadow: 100px 1px 10px #A6A6A6;
+                background: #fff;
+            }
+
+
+    </style>
+</head>
+<body>
+<nav th:fragment="navbar" class="navbar" role="navigation">
+    <div class="navbar-brand">
+        <div class="title-container">
+            <a href="/">Library System</a>
+        </div>
+    </div>
+    <div class="navbar-menu">
+        <div class="navbar-start">
+            <div class="navbar-item">
+                <input id="search_query" type="text" placeholder="Search Books or Library"/>
+            </div>
+            <div class="navbar-item">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <button class="button is-primary"
+                                onclick="location.href = '/search?q=' + document.getElementById('search_query').value;">
+                            <strong>Search</strong>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--        leave this button for user or client in the future-->
+<!--        <div class="navbar-end">-->
+<!--            <div class="navbar-item">-->
+<!--                <div class="buttons">-->
+<!--                    &lt;!&ndash;                allow the user to change the login port to admin port&ndash;&gt;-->
+<!--                    <a class="button" onclick="location.href = window.location.href = '/clientlogin'">-->
+<!--                        <strong>Sign In as client</strong>-->
+<!--                    </a>-->
+<!--                </div>-->
+
+<!--            </div>-->
+<!--        </div>-->
+    </div>
+</nav>
+
+
+<div class="form">
+    <p>Username:</p>
+    <form action="" method="post">
+        <input type="text" id="username" style="width:200px;height:30px;font_size: 18pt;border:1px solid #808080;border-radius: 4px">
+    </form>
+    <p>Password:</p>
+    <form action="" method="post">
+        <input type="text" id="password" style="width:200px;height:30px;font_size: 18pt;border:1px solid #808080;border-radius: 4px">
+    </form>
+    <div class="navbar_item">
+        <div class="buttons">
+            <a class="button" onclick="location.href ='/signin?un='+document.getElementById('username').value+'&pw='+document.getElementById('password').value;">
+                <strong>Sign In</strong>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

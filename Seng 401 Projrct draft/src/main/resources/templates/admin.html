@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Home Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="/style.css" />
+    <script type="text/javascript" th:src="@{/main.js}"></script>
+</head>
+<body>
+<nav th:replace="fragments/adminGeneral.html :: navbar"></nav>
+
+<div class="center">
+    <!-- https://www.baeldung.com/spring-thymeleaf-fragments -->
+    <div class="jobs" th:insert="fragments/general.html :: jobItem(${jobs})"></div>
+</div>
+
+<div th:replace="fragments/general.html :: infoModal"></div>
+
+</body>
+</html>
