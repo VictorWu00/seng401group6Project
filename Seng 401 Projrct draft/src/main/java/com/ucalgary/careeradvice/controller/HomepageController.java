@@ -36,10 +36,10 @@ public class HomepageController {
         return "admin";
     }
 
-    /*@GetMapping("/user")
+    @GetMapping("/user")
     public String user(Model model) {
         return "user";
-    }*/
+    }
 
 }
 

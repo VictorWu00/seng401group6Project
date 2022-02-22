@@ -30,7 +30,7 @@ public class userloginController {
             return "homepage";
         }
         else{
-            return "userlogin";
+            return "loginpage";
         }
 
     }

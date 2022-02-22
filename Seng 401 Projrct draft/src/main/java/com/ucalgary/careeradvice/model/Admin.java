@@ -55,4 +55,12 @@ public class Admin {
     public void setLibraryID(String libraryID) {
         this.Library_ID = libraryID;
     }
+
+    public String getEmail(){
+        return this.Email;
+    }
+
+    public String getPassword(){
+        return this.Password;
+    }
 }

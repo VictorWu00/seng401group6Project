@@ -47,51 +47,19 @@ public class UserRepository {
         );
     }
 
-    // public boolean isUser(String name, String password) {
-    //     String sql = "SELECT Email, Password FROM user WHERE Email = ? AND Password = ?";
-    //     try{
-            
-    //         User authroity = this.jdbcTemplate.queryForObject(sql, new RowMapper<User>(){
-    //         @Override
-    //         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-    //             User a = new User();
-    //             a.setEmail(rs.getString("email"));
-    //             a.setPassword(rs.getString("password"));
-    //             return a;
-    //         }
-    //         }, name, password);
-    //     }
-    //     catch (EmptyResultDataAccessException e){
-    //         return false;
-    //     }
-    //     return true;
-    // }
-
     public boolean isUser(String name, String password) {
-    String sql = "SELECT COUNT(*) FROM user WHERE Email = ? AND Password = ?";
-    int count;
-    try{
-        count = this.jdbcTemplate.queryForObject(sql, Integer.class, name, password);
-        if (count > 0) return true;
+        String sql = "SELECT COUNT(*) FROM user WHERE Email = ? AND Password = ?";
+        int count;
+        try{
+            count = this.jdbcTemplate.queryForObject(sql, Integer.class, name, password);
+            if (count > 0) return true;
+            return false;
+        }catch (EmptyResultDataAccessException e){
         return false;
-    }catch (EmptyResultDataAccessException e){
-        return false;
+        }
     }
-    }
+
 
 
 }
 
-
-// public static boolean isUser(String name, String password) {
-//     String sql = "SELECT COUNT(*) FROM user WHERE Name = ? AND Password = ?;";
-//     int count;
-//     try{
-//         count = jdbcTemplate.queryForObject(sql, Integer.class, new Object[]{name, password});
-//     }
-//     catch (EmptyResultDataAccessException e){
-//         return false;
-//     }
-//     if (count > 0) return true;
-//     return false;
-// }

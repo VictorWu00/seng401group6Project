@@ -1,20 +1,20 @@
 package com.ucalgary.careeradvice.model;
 
 public class User {
-    private String ID;
+    private int ID;
     private String Name;
     private String Address;
     private String PhoneNumber;
     private String DateOfBirth;
     private String Email;
     private String Password;
-    private String Balance;
+    private double Balance;
     
     public User(){
         
     }
 
-    public User(String ID, String Name, String Address, String PhoneNumber, String birth, String Email, String Password, String Balance) {
+    public User(int ID, String Name, String Address, String PhoneNumber, String birth, String Email, String Password, double Balance) {
         this.ID=ID;
         this.Name=Name;
         this.Address=Address;
@@ -25,7 +25,7 @@ public class User {
         this.Balance=Balance;
     }
     
-    public void setID(String id) {
+    public void setID(int id) {
         this.ID = id;
     }
 
@@ -44,7 +44,7 @@ public class User {
     public void setPhone(String phone) {
         this.PhoneNumber = phone;
     }
-    public void setBalance(String balance) {
+    public void setBalance(double balance) {
         this.Balance = balance;
     }
 

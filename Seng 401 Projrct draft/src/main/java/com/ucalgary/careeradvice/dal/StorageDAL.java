@@ -36,7 +36,7 @@ public class StorageDAL {
     }
 
     public boolean isUser(String username, String password){
-        boolean auth = UserRepository.isUser(username,password);
+        boolean auth = userRepository.isUser(username,password);
         return auth;
     }
 }
