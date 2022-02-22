@@ -27,7 +27,7 @@ public class UserRepository {
     public User getUser(String username, String password) {
         // https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/core/JdbcTemplate.html
         return jdbcTemplate.query(
-                "SELECT * FROM Users WHERE username=? AND password=?",
+                "SELECT * FROM User WHERE Name=? AND Password=?",
                 new Object[]{username, password},
                 new int[]{Types.VARCHAR, Types.VARCHAR},
                 UserRepository::mapFromResultSet // pass method reference (not spring-boot specific, but with newer versions of java)
@@ -36,36 +36,62 @@ public class UserRepository {
 
     private static User mapFromResultSet(ResultSet rs) throws SQLException {
         return new User(
-                rs.getInt("id"),
-                rs.getString("username"),
-                rs.getString("fname"),
-                rs.getString("lname"),
-                rs.getString("phone_no"),
-                rs.getString("email"),
-                rs.getString("address"),
-                rs.getString("sin"),
-                rs.getString("application_name"),
-                rs.getString("application_status")
+                rs.getInt("ID"),
+                rs.getString("Name"),
+                rs.getString("Address"),
+                rs.getString("PhoneNumber"),
+                rs.getString("DateOfBirth"),
+                rs.getString("Email"),
+                rs.getString("Password"),
+                rs.getDouble("Balance")
         );
     }
 
-    public static boolean isUser(String username, String password) {
-        String sql = "select email, password from userLoginInfo where email = ? and password = ?";
-        try{
-            /*User authroity = this.jdbcTemplate.queryForObject(sql, new Object[]{username, password}, new RowMapper<Admin>() {
-                @Override
-                public Admin mapRow(ResultSet rs, int rowNum) throws SQLException {
-                    Admin a = new Admin();
-                    a.setEmail(rs.getString("email"));
-                    a.setPassword(rs.getString("password"));
-                    return a;
-                }
-            });*/
-        }
-        catch (EmptyResultDataAccessException e){
-            return false;
-        }
-        return true;
+    // public boolean isUser(String name, String password) {
+    //     String sql = "SELECT Email, Password FROM user WHERE Email = ? AND Password = ?";
+    //     try{
+            
+    //         User authroity = this.jdbcTemplate.queryForObject(sql, new RowMapper<User>(){
+    //         @Override
+    //         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+    //             User a = new User();
+    //             a.setEmail(rs.getString("email"));
+    //             a.setPassword(rs.getString("password"));
+    //             return a;
+    //         }
+    //         }, name, password);
+    //     }
+    //     catch (EmptyResultDataAccessException e){
+    //         return false;
+    //     }
+    //     return true;
+    // }
+
+    public boolean isUser(String name, String password) {
+    String sql = "SELECT COUNT(*) FROM user WHERE Email = ? AND Password = ?";
+    int count;
+    try{
+        count = this.jdbcTemplate.queryForObject(sql, Integer.class, name, password);
+        if (count > 0) return true;
+        return false;
+    }catch (EmptyResultDataAccessException e){
+        return false;
+    }
     }
 
+
 }
+
+
+// public static boolean isUser(String name, String password) {
+//     String sql = "SELECT COUNT(*) FROM user WHERE Name = ? AND Password = ?;";
+//     int count;
+//     try{
+//         count = jdbcTemplate.queryForObject(sql, Integer.class, new Object[]{name, password});
+//     }
+//     catch (EmptyResultDataAccessException e){
+//         return false;
+//     }
+//     if (count > 0) return true;
+//     return false;
+// }

@@ -6,7 +6,6 @@ public class Author {
     private String PhoneNumber;
 
     public Author(){
-
     }
 
     public Author(String name, String address, String phone){

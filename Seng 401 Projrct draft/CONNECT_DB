@@ -1,2 +1,2 @@
 #!/bin/sh
-mysql -h 35.208.142.27 -u root -p
+mysql -h 127.0.0.1 -u root -p
