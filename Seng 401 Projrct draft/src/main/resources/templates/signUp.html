@@ -1,0 +1,198 @@
+<!DOCTYPE>
+<html>
+<html lang="ch">
+
+<head>
+	<title>Sign Up</title>
+	<meta charset="utf-8">
+	<style>
+		#struct {
+			position: absolute;
+			top: 32.5%;
+			left: 22%;
+			width: 90%;
+			height: 420px;
+			margin-top: -200;
+			text-align-last: center;
+			font-family: Avenir;
+		}
+
+		#struct input {
+			font-size: 17px;
+			text-align: center;
+			border-radius: 25px;
+		}
+
+		#code {
+			width: 85px;
+		}
+
+		table {
+			border-spacing: 10;
+		}
+
+		td {
+			color: #ED9121;
+			font-family: Avenir;
+			font-size: 20px;
+		}
+
+		th {
+			color: #FFDEAD;
+			font-family: Avenir;
+		}
+
+		h1 {
+			color: #ED9121;
+			font-family: Avenir;
+			font-size: 72px;
+			text-shadow: 10px 0 10px antiquewhite,
+				-10px 0 10px antiquewhite,
+				0 10px 10px antiquewhite,
+				0 -10px 10px antiquewhite;
+		}
+
+		.login-button {
+			/* 按钮美化 */
+			width: 150px;
+			/* 宽度 */
+			height: 35px;
+			/* 高度 */
+			border-width: 0px;
+			/* 边框宽度 */
+			border-radius: 3px;
+			/* 边框半径 */
+			background: #ED9121;
+			/* 背景颜色 */
+			cursor: pointer;
+			/* 鼠标移入按钮范围时出现手势 */
+			outline: none;
+			/* 不显示轮廓线 */
+			color: white;
+			/* 字体颜色 */
+			font-family: Avenir;
+			font-size: 17px;
+			/* 字体大小 */
+		}
+
+		.login-button:hover {
+			/* 鼠标移入按钮范围时改变颜色 */
+			background: #FFDEAD;
+		}
+	</style>
+
+	<script type="text/javascript">
+		function checkU() {  //检查用户名
+			var u = document.getElementById("userName");
+			var reU = document.getElementById("reUser");
+			if (u.value.length < 2 || u.value.length > 12) {
+				u.focus();
+				reU.innerHTML = "用户名长度在2-12字符之间";
+				return false;
+			}
+			else {
+				reU.innerHTML = "";
+				return true;
+			}
+		}
+
+		function checkP() { //检查密码格式
+			var p = document.getElementById("password");
+			var rePwd = document.getElementById("rePwd");
+			var reg = /^\w{6, 18}$/;
+			if (!reg.test(p.value)) {
+				p.focus();
+				rePwd.innerHTML = "密码由6-18位的数字、字母、下划线组成";
+				return false;
+			} else {
+				rePwd.innerHTML = "";
+				return true;
+			}
+		}
+
+		function checkT() { //检查手机号格式
+			var t = document.getElementById("tel");
+			var reTel = document.getElementById("reTel");
+			var reg = /^1[3578][0-9]{9}$/;
+			if (!reg.test(t.value)) {
+				t.focus();
+				reTel.innerHTML = "请输入11位有效手机号";
+				return false;
+			}
+			else {
+				reTel.innerHTML = "";
+				return true;
+			}
+		}
+		function checkEmail() {
+			undefined
+			var email = document.getElementById("email").value;
+			var reg = /\w*\@\w*\.\w*$/;
+			if (!reg.test(email)) {
+				alert('email输入错误')
+				return false;
+			}
+			return true;
+		}
+		function checkSelect() {
+			if (document.getElementById("agree").checked) {
+				alert("Please agree to the Term and Privaty Policy");
+				return false;
+			}
+			return true;
+		}
+	</script>
+</head>
+
+<body>
+	<div id="struct">
+		<h1>Sign Up</h1><br />
+		<form name="register" method="post">
+			<table border="0">
+				<tr>
+					<td> Username</td>
+					<th>
+						<input id="zcname" name="username" size="22px" type="text" οnblur="checkU()"/>
+					</th>
+					<th> 3-5 digits, include numbers, letters and underline</th>
+				</tr>
+				<tr>
+					<td> Password</td>
+					<th>
+						<input id="zcpass" name="password1" size="22px" type="password" οnblur="checkP()" />
+					</th>
+					<th> 6-12 digits</th>
+				</tr>
+				<tr>
+					<td> Confirm the password</td>
+					<th>
+						<input id="zcrpass" name="password2" size="22px" type="password" />
+					</th>
+					<th> Confirm the password</th>
+				</tr>
+				<tr>
+					<td> Email</td>
+					<th><input id="zcemail" name="email" size="22px" type="text" οnblur="checkEmail()"/><br /><br /></th>
+					<th> Please enter the email</th>
+				</tr>
+				<tr>
+					<td> Phone number</td>
+					<th>
+						<select id="code" name="code">
+							<option> China +86</option>
+							<option selected="selected"> Canada +1</option>
+							<option> United States +1</option>
+							<option> United Kingdom +44</option>
+						</select>
+						<input id="zcpgone" name="phone" size="15px" type="tel" οnblur="checkT()"/><br /><br />
+					</th>
+					<th> Please enter the phone number</th>
+				</tr>
+			</table>
+			<input type="radio" id="agree" οnblur="checkSelect()"/> Agree to the Term and Privaty Policy </br></br>
+			<input class="login-button" onClick="check()" type="submit" value="Continue">
+		</form>
+	</div>
+</body>
+
+</html>
