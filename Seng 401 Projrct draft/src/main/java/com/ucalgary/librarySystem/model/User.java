@@ -1,4 +1,4 @@
-package com.ucalgary.careeradvice.model;
+package com.ucalgary.librarySystem.model;
 
 public class User {
     private int ID;

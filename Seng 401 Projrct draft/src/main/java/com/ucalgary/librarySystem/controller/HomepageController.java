@@ -1,7 +1,5 @@
-package com.ucalgary.careeradvice.controller;
+package com.ucalgary.librarySystem.controller;
 
-import com.ucalgary.careeradvice.dal.StorageDAL;
-import com.ucalgary.careeradvice.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.w3c.dom.html.HTMLCollection;
 
 import java.util.List;
+
+import com.ucalgary.librarySystem.dal.StorageDAL;
+import com.ucalgary.librarySystem.model.User;
 
 @Controller
 @RequestMapping("/")

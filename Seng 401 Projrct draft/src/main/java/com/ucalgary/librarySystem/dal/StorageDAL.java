@@ -1,8 +1,5 @@
-package com.ucalgary.careeradvice.dal;
+package com.ucalgary.librarySystem.dal;
 
-import com.ucalgary.careeradvice.model.User;
-import com.ucalgary.careeradvice.repository.AdminRepository;
-import com.ucalgary.careeradvice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -10,6 +7,11 @@ import org.thymeleaf.util.StringUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.ucalgary.librarySystem.model.User;
+import com.ucalgary.librarySystem.repository.AdminRepository;
+import com.ucalgary.librarySystem.repository.BookRepository;
+import com.ucalgary.librarySystem.repository.UserRepository;
 
 /**
  * Provides access to stored data, whether through a database or a file stored on the device.
@@ -21,14 +23,11 @@ public class StorageDAL {
     @Autowired
     private UserRepository userRepository;
 
-
     @Autowired
     private AdminRepository adminRepository;
 
-    public User getUser(String username, String password) {
-        return userRepository.getUser(username, password);
-    }
-
+    @Autowired
+    private BookRepository bookRepository;
 
     public boolean isAdmin(String username, String password){
         boolean auth = adminRepository.isAdmin(username,password);
@@ -39,5 +38,15 @@ public class StorageDAL {
         boolean auth = userRepository.isUser(username,password);
         return auth;
     }
+
+    public void addBook(int isbn, String name, String description, String category, int year, String author, String publisher, String section, int location){
+        bookRepository.addBook(isbn, name, description, category, year, author, publisher, section, location);
+    }
+
+    public void deleteBook(String name, String author){
+        bookRepository.deleteBook(author, name);
+    }
+
+    
 }
 
