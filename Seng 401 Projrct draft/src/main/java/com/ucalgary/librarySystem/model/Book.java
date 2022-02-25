@@ -1,4 +1,4 @@
-package com.ucalgary.careeradvice.model;
+package com.ucalgary.librarySystem.model;
 
 import java.util.function.BiConsumer;
 
@@ -18,8 +18,8 @@ public class Book {
 
     }
 
-    public Book(int bID, int isbn, String name, String description, String category, int year, String author, String publisher, String section, int location){
-        this.BookID=bID;
+    public Book(int bookID, int isbn, String name, String description, String category, int year, String author, String publisher, String section, int location){
+        this.BookID=bookID;
         this.ISBN=isbn;
         this.Name=name;
         this.Description=description;
@@ -30,6 +30,8 @@ public class Book {
         this.SectionName=section;
         this.location=location;
     }
+
+
 
     
 }

@@ -1,7 +1,6 @@
-package com.ucalgary.careeradvice.repository;
+package com.ucalgary.librarySystem.repository;
 
 
-import com.ucalgary.careeradvice.model.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -10,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.ucalgary.librarySystem.model.Admin;
 
 @Repository
 public class AdminRepository {

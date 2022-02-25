@@ -1,4 +1,4 @@
-package com.ucalgary.careeradvice.model;
+package com.ucalgary.librarySystem.model;
 
 public class Admin {
     private String ID;

@@ -1,7 +1,7 @@
-package com.ucalgary.careeradvice.repository;
+package com.ucalgary.librarySystem.repository;
 
 
-import com.ucalgary.careeradvice.model.User;
+import com.ucalgary.librarySystem.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -57,6 +57,38 @@ public class UserRepository {
         }catch (EmptyResultDataAccessException e){
         return false;
         }
+    }
+
+    public User getUserByID(int ID){
+        User res;
+        String sql = "SELECT Name, Address, PhoneNumber, DateOfBirth, Email, Balance FROM user WHERE ID = ?";
+        try{
+            res = this.jdbcTemplate.queryForObject(sql, new RowMapper<User>(){
+                @Override
+                public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+                    User a = new User(ID, rs.getString("Name"), rs.getString("Address"), rs.getString("PhoneNumber"), rs.getString("DateOfBirth")
+                    , rs.getString("Email"), "",rs.getDouble("Balance"));
+                    return a;
+                }
+            }, ID);
+        }catch(EmptyResultDataAccessException e){
+            res = new User();
+            return res;
+        }
+        return res;
+    }
+
+    //success return value > 0, else return 0
+    public int addNewUser(String Name, String Address, String PhoneNumber, String DateOfBirth, String Email, String Password){
+        String sql = "INSERT INTO user (Name,Address,PhoneNumber,DateOfBirth,Email,Password,Balance) values(?,?,?,?,?,0)";
+        int res = this.jdbcTemplate.update(sql, Name, Address, PhoneNumber, DateOfBirth, Email, Password);
+        return res;
+    }
+
+    public int deleteUser(int ID){
+        String sql = "DELETE FROM user WHERE ID = ?";
+        int res = this.jdbcTemplate.update(sql, ID);
+        return res;
     }
 
 
