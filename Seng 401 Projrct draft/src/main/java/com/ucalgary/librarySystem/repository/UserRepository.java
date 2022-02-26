@@ -78,10 +78,35 @@ public class UserRepository {
         return res;
     }
 
+    public User getUserByEmail(String Email){
+        User res;
+        String sql = "SELECT ID, Name, Address, PhoneNumber, DateOfBirth, Email, Balance FROM user WHERE Email = ?";
+        try{
+            res = this.jdbcTemplate.queryForObject(sql, new RowMapper<User>(){
+                @Override
+                public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+                    User a = new User(rs.getInt("ID"), rs.getString("Name"), rs.getString("Address"), rs.getString("PhoneNumber"), rs.getString("DateOfBirth")
+                    , rs.getString("Email"), "",rs.getDouble("Balance"));
+                    return a;
+                }
+            }, Email);
+        }catch(EmptyResultDataAccessException e){
+            res = new User();
+            return res;
+        }
+        return res;
+    }
+
     //success return value > 0, else return 0
     public int addNewUser(String Name, String Address, String PhoneNumber, String DateOfBirth, String Email, String Password){
         String sql = "INSERT INTO user (Name,Address,PhoneNumber,DateOfBirth,Email,Password,Balance) values(?,?,?,?,?,0)";
         int res = this.jdbcTemplate.update(sql, Name, Address, PhoneNumber, DateOfBirth, Email, Password);
+        return res;
+    }
+
+    public int registerNewUser(String Email, String Password){
+        String sql = "INSERT INTO user (Email, Password) values (?, ?)";
+        int res = this.jdbcTemplate.update(sql, Email, Password);
         return res;
     }
 

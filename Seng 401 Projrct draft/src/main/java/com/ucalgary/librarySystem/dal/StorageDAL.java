@@ -47,6 +47,12 @@ public class StorageDAL {
         bookRepository.deleteBook(author, name);
     }
 
+    public User getUserByEmail(String Email){
+        return userRepository.getUserByEmail(Email);
+    }
     
+    public int registerUser(String Email, String Password){
+        return userRepository.registerNewUser(Email, Password);
+    }
 }
 

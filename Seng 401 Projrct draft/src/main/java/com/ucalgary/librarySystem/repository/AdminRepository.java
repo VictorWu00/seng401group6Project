@@ -18,21 +18,14 @@ public class AdminRepository {
     private JdbcTemplate jdbcTemplate;
 
     public boolean isAdmin(String username, String password) {
-        String sql = "select email, password from adminLoginInfo where email = ? and password = ?";
+        String sql = "SELECT COUNT(*) FROM staff WHERE Email = ? AND Password = ?";
+        int count;
         try{
-            Admin authroity = this.jdbcTemplate.queryForObject(sql, new Object[]{username, password}, new RowMapper<Admin>() {
-                @Override
-                public Admin mapRow(ResultSet rs, int rowNum) throws SQLException {
-                    Admin a = new Admin();
-                    a.setEmail(rs.getString("email"));
-                    a.setPassword(rs.getString("password"));
-                    return a;
-                }
-            });
-        }
-        catch (EmptyResultDataAccessException e){
+            count = this.jdbcTemplate.queryForObject(sql, Integer.class, username, password);
+            if (count > 0) return true;
             return false;
+        }catch (EmptyResultDataAccessException e){
+        return false;
         }
-        return true;
     }
 }
