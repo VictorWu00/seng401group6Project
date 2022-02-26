@@ -43,6 +43,29 @@ public class Book {
         return this.Description;
     }
 
+    public int getYear(){
+        return this.Year;
+    }
+
+    public String getSectionName(){
+        return this.SectionName;
+    }
+
+    public String getPublisher()
+    {
+        return this.Publisher;
+    }
+
+    public int getLocation()
+    {
+        return this.location;
+    }
+
+    public String getCategory()
+    {
+        return this.Category;
+    }
+
     public static class Builder {
         private int BookID;
     private int ISBN;
