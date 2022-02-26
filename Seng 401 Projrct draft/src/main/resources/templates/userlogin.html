@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Career Advice</title>
+    <title>Library System</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="/style.css"/>
@@ -67,16 +67,16 @@ body {
 <div class="form">
     <p>Username:</p>
     <form action="" method="post">
-        <input type="text" id="username" style="width:200px;height:30px;font_size: 18pt;border:1px solid #808080;border-radius: 4px">
+        <input type="text" id="username" style="width:200px;height:30px;font:18pt;border:1px solid #808080;border-radius: 4px">
     </form>
     <p>Password:</p>
     <form action="" method="post">
-        <input type="text" id="password" style="width:200px;height:30px;font_size: 18pt;border:1px solid #808080;border-radius: 4px">
+        <input type="password" id="password" style="width:200px;height:30px;font:18pt;border:1px solid #808080;border-radius: 4px">
     </form>
     <div class="navbar_item">
         <div class="buttons">
             <a class="button" onclick="location.href ='/usignin?ab='+document.getElementById('username').value+'&cd='+document.getElementById('password').value;">
-                <strong>Sign In</strong>
+                <strong>Sign in</strong>
             </a>
         </div>
     </div>

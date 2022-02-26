@@ -55,4 +55,32 @@ public class User {
     public void setPassword(String password) {
         this.Password = password;
     }
+
+    public int getUserID(){
+        return this.ID;
+    }
+
+    public String getUserName(){
+        return this.Name;
+    }
+
+    public String getUserAddress(){
+        return this.Address;
+    }
+
+    public String getUserPhone(){
+        return this.PhoneNumber;
+    }
+
+    public String getUserBirth(){
+        return this.DateOfBirth;
+    }
+
+    public String getUserEmail(){
+        return this.Email;
+    }
+
+    public double getUserBalance(){
+        return this.Balance;
+    }
 }

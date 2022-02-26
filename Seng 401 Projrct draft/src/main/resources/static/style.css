@@ -18,7 +18,7 @@ html, body {
 .navbar {
     padding: 0px 30px;
     box-shadow: 0 0px 5px;
-    //background-color: grey;
+    background-color: grey;
 }
 
 input[type="text"] {
@@ -35,7 +35,7 @@ input.search {
 
 .navbar2 {
     padding: 0px 30px;
-//background-color: grey;
+    background-color: white;
 }
 
 .center {

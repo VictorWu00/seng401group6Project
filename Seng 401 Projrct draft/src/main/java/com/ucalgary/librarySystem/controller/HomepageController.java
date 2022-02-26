@@ -24,7 +24,7 @@ public class HomepageController {
     // https://github.com/donnemartin/system-design-primer
     @GetMapping
     public String homepage(Model model) {
-        return "homepage";
+        return "index";
     }
 
     @GetMapping("/homepage")
@@ -40,6 +40,22 @@ public class HomepageController {
     @GetMapping("/user")
     public String user(Model model) {
         return "user";
+    }
+
+    @GetMapping("/about")
+    public String about(Model model){
+        return "about";
+    }
+
+    @GetMapping("/index")
+    public String index(Model model){
+        return "index";
+    }
+
+    @RequestMapping("/search")
+    public String search(Model model){
+
+        return "homePage";
     }
 
 }
