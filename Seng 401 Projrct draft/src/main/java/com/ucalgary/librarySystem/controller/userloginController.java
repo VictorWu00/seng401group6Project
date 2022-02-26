@@ -1,6 +1,9 @@
 package com.ucalgary.librarySystem.controller;
 
+import java.util.List;
+
 import com.ucalgary.librarySystem.dal.StorageDAL;
+import com.ucalgary.librarySystem.model.Book;
 import com.ucalgary.librarySystem.model.User;
 import com.ucalgary.librarySystem.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class userloginController {
@@ -23,6 +27,18 @@ public class userloginController {
     @RequestMapping("/UserSearch")
     public String jumpToSearchpage(){
         return "UserSearch";
+    }
+
+    @RequestMapping("/Search")
+    public String search(@RequestParam(name = "bookName", required = true) String bookName, Model model){
+        List<Book> books=dal.searchByBookName(bookName);
+        if(books.size()!=0){
+            model.addAttribute("books",books);
+            return "Search";
+        }
+        else{
+            return "UserSearch";
+        }
     }
 
     @RequestMapping("/UserRent")

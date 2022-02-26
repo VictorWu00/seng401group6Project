@@ -31,6 +31,50 @@ public class Book {
         this.location=location;
     }
 
+    public String getName(){
+        return this.Name;
+    }
+
+    public String getAuthor(){
+        return this.Author;
+    }
+
+    public String getDescription(){
+        return this.Description;
+    }
+
+    public static class Builder {
+        private int BookID;
+    private int ISBN;
+    private String Name;
+    private String Description;
+    private String Category;
+    private int Year;
+    private String Author;
+    private String Publisher;
+    private String SectionName;
+    private int location;
+
+        public Builder(Book book) {
+            this.BookID=book.BookID;
+        this.ISBN=book.ISBN;
+        this.Name=book.Name;
+        this.Description=book.Description;
+        this.Category=book.Category;
+        this.Year=book.Year;
+        this.Author=book.Author;
+        this.Publisher=book.Publisher;
+        this.SectionName=book.SectionName;
+        this.location=book.location;
+        }
+
+       
+
+        public Book build() {
+            return new Book(BookID, ISBN, Name, Description, Category, Year,  Author, Publisher, SectionName, location);
+        }
+    }
+
 
 
     

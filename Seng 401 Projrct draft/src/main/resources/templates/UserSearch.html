@@ -120,9 +120,12 @@ function loadmessage() {
 </a>
 
 <form id="form"> 
-  <input type="search" id="query" name="book" placeholder="Search books" style="position: absolute; left:400px; top:250px; width:500px; height:30px;" >
-  <button style="position: absolute; left:910px; top:250px; height:30px; background-color: bisque;">Search</button>
+  <input type="search" id="query" name="book" placeholder="Search books" style="position: absolute; left:400px; top:250px; width:500px; height:30px;">
 </form>
+
+<button onclick="location.href = window.location.href = '/Search?bookName=' + document.getElementById('query').value;" style="position: absolute; left:910px; top:250px; height:30px; background-color: bisque;">
+  <strong>Search</strong>
+</button>
 
 
 </html>

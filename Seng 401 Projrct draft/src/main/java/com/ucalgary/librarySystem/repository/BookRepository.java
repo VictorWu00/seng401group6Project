@@ -42,30 +42,23 @@ public class BookRepository {
     
     public List<Book> searchByBookName(String bookName){
         return jdbcTemplate.query(
-                "SELECT B.ISBN, B.Name, B.Description, B.Category, B.Year, B.Auhor, B.Publisher, B.SectionName, B.Location" +
-                        "FROM book AS B " +
-                        "WHERE B.Name = ?",
-                new Object[]{"%" + bookName + "%"},
-                new int[]{Types.VARCHAR},
-                BookRepository::mapAllBooks
+                "SELECT BookID, ISBN, Name, Description, Category, Year, Auhor, Publisher, SectionName, Location FROM book WHERE Name = ?",
+                BookRepository::mapAllBooks,
+                bookName
         );
         
     }
 
     public List<Book> searchByAuthor(String author){
         return jdbcTemplate.query(
-                "SELECT B.ISBN, B.Name, B.Description, B.Category, B.Year, B.Auhor, B.Publisher, B.SectionName, B.Location" +
-                        "FROM book AS B " +
-                        "WHERE B.Auhor = ?",
-                new Object[]{"%" + author + "%"},
-                new int[]{Types.VARCHAR},
-                BookRepository::mapAllBooks
+            "SELECT BookID, ISBN, Name, Description, Category, Year, Auhor, Publisher, SectionName, Location FROM book WHERE Author = ?",
+                BookRepository::mapAllBooks, author
         );
     }
 
     private static Book mapAllBooks(ResultSet rs,int rowNum) throws SQLException{
         return new Book(
-            rs.getInt("ID"),
+            rs.getInt("BookID"),
             rs.getInt("ISBN"),
             rs.getString("Name"),
             rs.getString("Description"),
