@@ -22,22 +22,15 @@ public class BookRepository {
     private JdbcTemplate jdbcTemplate;
     
     //needed to have the controller
-    public boolean addBook(int isbn, String name, String description, String category, int year, String author, String publisher, String section, int location){
-        String query="insert into book (ISBN, Name, Description, Category, Year, Auhor, Publisher, SectionName, Location) values (?,?,?,?,?,?,?,?,?)";
-        int result=jdbcTemplate.update(query,isbn,name,description,category,year,author,publisher,section,location);
-        if(result>0){
-            return true;
-        }
-        return false;
+    public void addBook(int bID,int isbn, String name, String description, String category, int year, String author, String publisher, String section, int location){
+        String query="insert into book (BookID, ISBN, Name, Description, Category, Year, Auhor, Publisher, SectionName, Location) values (?,?,?,?,?,?,?,?,?,?)";
+        jdbcTemplate.update(query,bID,isbn,name,description,category,year,author,publisher,section,location);
+
     }
 
-    public boolean deleteBook(String bookName, String Author){
+    public void deleteBook(String bookName, String Author){
         String query="delete from book where Auhor = ? and Name = ?";
-        int result=jdbcTemplate.update(query, bookName, Author);
-        if(result>0){
-            return true;
-        }
-        return false;
+        jdbcTemplate.update(query, bookName, Author);
     }
     
     public List<Book> searchByBookName(String bookName){
