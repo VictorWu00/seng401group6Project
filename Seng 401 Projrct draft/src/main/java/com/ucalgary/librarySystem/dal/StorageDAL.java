@@ -41,7 +41,7 @@ public class StorageDAL {
     }
 
     public void addBook(int isbn, String name, String description, String category, int year, String author, String publisher, String section, int location){
-        bookRepository.addBook(2,isbn, name, description, category, year, author, publisher, section, location);
+        bookRepository.addBook(isbn, name, description, category, year, author, publisher, section, location);
     }
 
     public void deleteBook(String name, String author){
