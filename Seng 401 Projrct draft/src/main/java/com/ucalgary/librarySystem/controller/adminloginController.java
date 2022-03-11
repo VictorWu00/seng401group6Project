@@ -93,6 +93,8 @@ public class adminloginController {
         System.out.println(phone);
         System.out.println(balance);
         System.out.println(name);
+
+        
         return "ModifyU";
     }
 
