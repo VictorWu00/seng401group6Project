@@ -23,7 +23,6 @@ public class BookRepository {
     
     //needed to have the controller
     public void addBook(int isbn, String name, String description, String category, int year, String author, String publisher, String section, int location){
-
         String query="insert into book (ISBN, Name, Description, Category, Year, Auhor, Publisher, SectionName, Location) values (?,?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(query,isbn,name,description,category,year,author,publisher,section,location);
 
