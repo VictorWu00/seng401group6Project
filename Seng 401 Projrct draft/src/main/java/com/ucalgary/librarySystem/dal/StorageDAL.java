@@ -8,6 +8,7 @@ import org.thymeleaf.util.StringUtils;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.ucalgary.librarySystem.model.Admin;
 import com.ucalgary.librarySystem.model.Book;
 import com.ucalgary.librarySystem.model.User;
 import com.ucalgary.librarySystem.repository.AdminRepository;
@@ -41,7 +42,7 @@ public class StorageDAL {
     }
 
     public void addBook(int isbn, String name, String description, String category, int year, String author, String publisher, String section, int location){
-        bookRepository.addBook(2,isbn, name, description, category, year, author, publisher, section, location);
+        bookRepository.addBook(isbn, name, description, category, year, author, publisher, section, location);
     }
 
     public void deleteBook(String name, String author){
@@ -50,6 +51,10 @@ public class StorageDAL {
 
     public User getUserByEmail(String Email){
         return userRepository.getUserByEmail(Email);
+    }
+
+    public Admin getAdminByEmail(String Email){
+        return adminRepository.getAdminByEmail(Email);
     }
     
     public int registerUser(String Email, String Password){
@@ -61,6 +66,7 @@ public class StorageDAL {
         .map((book) -> new Book.Builder(book).build())
         .collect(Collectors.toList());
     }
+
 
 }
 
