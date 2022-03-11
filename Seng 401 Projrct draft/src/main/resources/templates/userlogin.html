@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Library System</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="/style.css"/>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/heroes/">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap.min.css" rel="stylesheet">
     <style>
 body {
                 background: #F7F7F7;
@@ -26,60 +30,54 @@ body {
 
     </style>
 </head>
+<main>
 <body>
-<nav th:fragment="navbar" class="navbar" role="navigation">
-    <div class="navbar-brand">
-        <div class="title-container">
-            <a href="/">Library System</a>
-        </div>
-    </div>
-    <div class="navbar-menu">
-        <div class="navbar-start">
-            <div class="navbar-item">
-                <input id="search_query" type="text" placeholder="Search Books or Library"/>
-            </div>
-            <div class="navbar-item">
-                <div class="navbar-item">
-                    <div class="buttons">
-                        <button class="button is-primary"
-                                onclick="location.href = '/search?q=' + document.getElementById('search_query').value;">
-                            <strong>Search</strong>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="navbar-end">
-            <div class="navbar-item">
-                <div class="buttons">
-                    <!--                allow the user to change the login port to client port-->
-                    <a class="button" onclick="location.href = window.location.href = '/userlogin'">
-                        <strong>Sign In as user</strong>
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</nav>
+    <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+          <a href="./" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+            <span class="fs-4">Library Management System</span>
+          </a>
+    
+          <ul class="nav nav-pills">
+            <li class="nav-item"><a href="./homepage" class="nav-link active" aria-current="page">Home</a></li>
+          </ul>
+        </header>
+      </div>
 
 <div class="form">
     <p>Username:</p>
     <form action="" method="post">
-        <input type="text" id="username" style="width:200px;height:30px;font:18pt;border:1px solid #808080;border-radius: 4px">
+        <input type="text" id="username" style="width:200px;height:30px;font-size:15px;border:1px solid #808080;border-radius: 4px" >
     </form>
+</br>
     <p>Password:</p>
     <form action="" method="post">
-        <input type="password" id="password" style="width:200px;height:30px;font:18pt;border:1px solid #808080;border-radius: 4px">
+        <input type="password" id="password" style="width:200px;height:30px;font:10pt; font-size:15px; border:1px solid #808080;border-radius: 4px">
+        <i class="far fa-eye" id="togglePassword" style="position:realtive; top:0px; left:0px"></i>
     </form>
+
     <div class="navbar_item">
         <div class="buttons">
-            <a class="button" onclick="location.href ='/usignin?ab='+document.getElementById('username').value+'&cd='+document.getElementById('password').value;">
-                <strong>Sign in</strong>
-            </a>
+            <button type="button" id="MyButton" class="btn btn-primary btn-info" style="position:relative; top:20px; padding:0px 30px" width= 200 onclick="location.href ='/usignin?ab='+document.getElementById('username').value+'&cd='+document.getElementById('password').value;">Sign In</button>
         </div>
     </div>
+
+    <script>
+        const togglePassword = document.querySelector('#togglePassword');
+  const password = document.querySelector('#password');
+ 
+  togglePassword.addEventListener('click', function (e) {
+    // toggle the type attribute
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    // toggle the eye slash icon
+    this.classList.toggle('fa-eye-slash');
+});
+    </script>
+
+ 
 </div>
 </body>
+</main>
 </html>
