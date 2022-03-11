@@ -122,4 +122,5 @@ nb-configuration.xml
 ## OS X
 ##############################
 .DS_Store
-*.properties
+Seng 401 Projrct draft/src/main/resources/application.properties
+/src/main/resources/application.properties
