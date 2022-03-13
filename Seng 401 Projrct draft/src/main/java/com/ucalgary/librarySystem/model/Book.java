@@ -66,6 +66,11 @@ public class Book {
         return this.Category;
     }
 
+    public int getBookID()
+    {
+        return this.BookID;
+    }
+
     public static class Builder {
         private int BookID;
     private int ISBN;
