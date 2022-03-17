@@ -88,13 +88,14 @@ public class adminloginController {
 
     @RequestMapping("/ModifyU")
     public String jumpToModifyU(Model model, @RequestParam(name = "a", required = false) String address, @RequestParam(name = "b", required = false) String phone, @RequestParam(name = "c", required = false) String birth, @RequestParam(name = "d", required = false) double balance, @RequestParam(name = "e", required = false) String name){
+        
         System.out.println(address);
         System.out.println(birth);
         System.out.println(phone);
         System.out.println(balance);
         System.out.println(name);
-
-        
+    
+        dal.modifyUser(name, address, phone, birth, balance);
         return "ModifyU";
     }
 

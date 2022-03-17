@@ -116,6 +116,27 @@ public class UserRepository {
         return res;
     }
 
+    public void modifyUser(String name, String address, String phone, String birth, double balance){
+        String query;
+
+        if(!address.equals("*")){
+            query="UPDATE user SET Address=? WHERE Name=?";
+            this.jdbcTemplate.update(query, address, name);
+        }
+        if(!phone.equals("*")){
+            query="UPDATE user SET PhoneNumber=? WHERE Name=?";
+            this.jdbcTemplate.update(query, phone, name);
+        }
+        if(!birth.equals("*")){
+            query="UPDATE user SET DateOfBirth=? WHERE Name=?";
+            this.jdbcTemplate.update(query, birth, name);
+        }
+        if(balance!=-1.0){
+            query="UPDATE user SET Balance=? WHERE Name=?";
+            this.jdbcTemplate.update(query, balance, name);
+        }
+    }
+
 
 
 }

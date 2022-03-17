@@ -67,6 +67,10 @@ public class StorageDAL {
         .collect(Collectors.toList());
     }
 
+    public void modifyUser(String name, String address, String phone, String birth, double balance){
+        userRepository.modifyUser(name, address, phone, birth, balance);
+    }
+
 
 }
 
