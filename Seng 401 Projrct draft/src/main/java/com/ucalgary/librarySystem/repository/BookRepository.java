@@ -50,6 +50,7 @@ public class BookRepository {
     }
 
 
+
     private static Book mapAllBooks(ResultSet rs,int rowNum) throws SQLException{
         return new Book(
             rs.getInt("BookID"),
@@ -65,7 +66,5 @@ public class BookRepository {
         );
     }
 
+    }
 
-
-
-}

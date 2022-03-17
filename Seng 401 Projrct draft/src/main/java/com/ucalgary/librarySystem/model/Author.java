@@ -13,4 +13,20 @@ public class Author {
         this.Address=address;
         this.PhoneNumber=phone;
     }
+
+    public String getName()
+    {
+        return this.Name;
+    }
+
+    public String getAddress()
+    {
+        return this.Address;
+
+    }
+
+    public String getPhoneNumber()
+    {
+        return PhoneNumber;
+    }
 }
