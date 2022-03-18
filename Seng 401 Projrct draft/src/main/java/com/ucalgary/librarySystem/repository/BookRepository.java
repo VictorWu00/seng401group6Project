@@ -13,8 +13,10 @@ import java.sql.SQLException;
 import java.util.List;
 import java.sql.Types;
 import com.ucalgary.librarySystem.model.Book;
-
+import com.ucalgary.librarySystem.model.Publisher;
+import com.ucalgary.librarySystem.model.Review;
 import com.ucalgary.librarySystem.model.Admin;
+import com.ucalgary.librarySystem.model.Author;
 
 @Repository
 public class BookRepository {
@@ -42,6 +44,22 @@ public class BookRepository {
         
     }
 
+    public List<Author> searchByBookAuthor(String bookName){
+        return jdbcTemplate.query(
+                "SELECT author.Name, author.Address, author.PhoneNumber FROM author, book WHERE author.Name = book.Auhor AND book.Name = ?",
+                BookRepository::mapAllAuthor,bookName
+        );
+        
+    }
+
+    public List<Publisher> searchByBookPublisher(String bookName){
+        return jdbcTemplate.query(
+                "SELECT publisher.Name, publisher.Adddress, publisher.PhoneNumber FROM publisher, book WHERE publisher.Name = book.Publisher AND book.Name = ?",
+                BookRepository::mapAllPublisher,bookName
+        );
+        
+    }
+
     public List<Book> searchByAuthor(String author){
         return jdbcTemplate.query(
             "SELECT BookID, ISBN, Name, Description, Category, Year, Auhor, Publisher, SectionName, Location FROM book WHERE Author = ?",
@@ -49,6 +67,12 @@ public class BookRepository {
         );
     }
 
+    public List<Review> searchByBookReview(int bookID){
+        return jdbcTemplate.query(
+            "SELECT Description, Rating, ReviewDate FROM review WHERE Book_ID = ?",
+                BookRepository::mapAllReviews, bookID
+        );
+    }
 
 
     private static Book mapAllBooks(ResultSet rs,int rowNum) throws SQLException{
@@ -65,6 +89,31 @@ public class BookRepository {
             rs.getInt("Location")
         );
     }
+
+    private static Author mapAllAuthor(ResultSet rs,int rowNum) throws SQLException{
+        return new Author(
+            rs.getString("Name"),
+            rs.getString("Address"),
+            rs.getString("PhoneNumber")
+        );
+    }
+
+    private static Publisher mapAllPublisher(ResultSet rs,int rowNum) throws SQLException{
+        return new Publisher(
+            rs.getString("Name"),
+            rs.getString("Adddress"),
+            rs.getString("PhoneNumber")
+        );
+    }
+
+    private static Review mapAllReviews(ResultSet rs,int rowNum) throws SQLException{
+        return new Review(
+            rs.getString("Description"),
+            rs.getString("Rating"),
+            rs.getString("ReviewDate")
+        );
+    }
+
 
     }
 

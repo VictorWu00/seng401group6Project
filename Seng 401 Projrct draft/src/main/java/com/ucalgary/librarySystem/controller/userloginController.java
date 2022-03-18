@@ -3,7 +3,10 @@ package com.ucalgary.librarySystem.controller;
 import java.util.List;
 
 import com.ucalgary.librarySystem.dal.StorageDAL;
+import com.ucalgary.librarySystem.model.Author;
 import com.ucalgary.librarySystem.model.Book;
+import com.ucalgary.librarySystem.model.Publisher;
+import com.ucalgary.librarySystem.model.Review;
 import com.ucalgary.librarySystem.model.User;
 import com.ucalgary.librarySystem.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,7 @@ public class userloginController {
     @Autowired
     private StorageDAL dal;
     private String Email;
+    private int userId;
 
     @RequestMapping("/userlogin")
     public String jumpToUserlogin(){
@@ -31,10 +35,19 @@ public class userloginController {
 
     @RequestMapping("/Search")
     public String search(@RequestParam(name = "bookName", required = true) String bookName, Model model){
+    
         List<Book> books=dal.searchByBookName(bookName);
-        
+        List<Author> authors = dal.searchByBookAuthor(bookName);
+        List<Publisher> publishers = dal.searchByBookPublisher(bookName);
+        int bookID = books.get(0).getBookID();
+
+        List<Review> reviews = dal.searchByBookReview(bookID);
+
         if(books.size()!=0){
             model.addAttribute("books",books);
+            model.addAttribute("authors", authors);
+            model.addAttribute("publishers", publishers);
+            model.addAttribute("reviews", reviews);
             return "Search";
         }
         else{
@@ -75,8 +88,6 @@ public class userloginController {
     @RequestMapping("/usignin")
     public String userSignin(Model model, @RequestParam(name = "ab", required = false) String email,
                              @RequestParam(name = "cd", required = false) String password){
-        System.out.println(email);
-        System.out.println(password);
         if (email == "" && password == "") {
             // when either username or password is emtpy, refresh the page.
             return "userlogin";
