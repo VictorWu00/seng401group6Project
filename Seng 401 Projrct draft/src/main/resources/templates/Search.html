@@ -93,4 +93,73 @@ function loadmessage() {
       
 </tr>
 
+</table>
+<center>
+<BUTTON ONCLICK="ShowAndHide1()" style= "position:relative; left:0px; top:250px;">Show More Information</BUTTON> </center>
+          <SCRIPT>
+        function ShowAndHide1() {
+            var x = document.getElementById('info');
+            if (x.style.display == 'none') {
+                x.style.display = 'block';
+            } else {
+                x.style.display = 'none';
+            }
+        }
+</SCRIPT>
+<DIV ID="info" style="display:none; position:relative; left:400px; top:300px;">
+<strong>Author Information</strong>
+<strong style="position:relative; left:297px; top:0px;">Publisher Information</strong>
+</br>
+<label>Name: <label th:text="${author.Name}" th:each="author:${authors}"></label> </label>
+</br>
+<label>Address: <label th:text="${author.Address}" th:each="author:${authors}"></label> </label>
+</br>
+<label>Phone-Number: <label th:text="${author.PhoneNumber}" th:each="author:${authors}"></label> </label>
+</br>
+
+</br>
+<label style="position:relative; left:450px; top:-100px">Name: <label th:text="${publisher.Name}" th:each="publisher:${publishers}"></label> </label>
+</br>
+<label style="position:relative; left:450px; top:-100px">Address: <label th:text="${publisher.Address}" th:each="publisher:${publishers}"></label> </label>
+</br>
+<label style="position:relative; left:450px; top:-100px">Phone-Number: <label th:text="${publisher.PhoneNumber}" th:each="publisher:${publishers}"></label> </label>
+</br>
+</DIV>
+
+<center>
+  <BUTTON ONCLICK="ShowAndHide()" style= "position:relative; left:0px; top:300px;">Show Book Reviews</BUTTON> </center>
+            <SCRIPT>
+          function ShowAndHide() {
+              var x = document.getElementById('review');
+              if (x.style.display == 'none') {
+                  x.style.display = 'block';
+              } else {
+                  x.style.display = 'none';
+              }
+          }
+  </SCRIPT>
+  <DIV ID="review" style="display:none; position:relative; left:400px; top:300px;">
+    <table>
+      <tr>
+      <table align = "center border" border="5px" style = "position: relative; left:-370px; top:50px; width:400px; background-color:rgb(225, 230, 176); line-height:20px; line-width: 60px; margin-left:auto;margin-right:auto;" >
+       <th style="color:black;font-size:20px; border:  solid;">Description</th>
+      <th style="color:black;font-size:20px; border:  solid;">Rating</th>
+      <th style="color:black;font-size:20px;border:  solid;">Review Date</th>
+     </tr>
+
+ <tr>
+   <td style="width: 100px;color:black;font-size:15px; text-align: center;  border: solid;"><label th:text="${review.Description}" th:each="review:${reviews}"></label></td>
+     <td style="width: 100px;color:black;font-size:15px; text-align: center;  border: solid;"><label th:text="${review.Rating}" th:each="review:${reviews}"></label></td>
+     <td style="color:black;font-size:15px; text-align: center; border: solid;"><label th:text="${review.Date}" th:each="review:${reviews}"></label></td>
+ </tr>
+
+</tr>
+
+</table>
+
+
+  </DIV>
+</main>
+
+
 </html>

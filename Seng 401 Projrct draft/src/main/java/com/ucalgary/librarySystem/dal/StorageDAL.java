@@ -9,7 +9,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.ucalgary.librarySystem.model.Admin;
+import com.ucalgary.librarySystem.model.Author;
 import com.ucalgary.librarySystem.model.Book;
+import com.ucalgary.librarySystem.model.Publisher;
+import com.ucalgary.librarySystem.model.Review;
 import com.ucalgary.librarySystem.model.User;
 import com.ucalgary.librarySystem.repository.AdminRepository;
 import com.ucalgary.librarySystem.repository.BookRepository;
@@ -71,6 +74,21 @@ public class StorageDAL {
         userRepository.modifyUser(name, address, phone, birth, balance);
     }
 
+    public List<Author> searchByBookAuthor(String bookName)
+    {
+        return  bookRepository.searchByBookAuthor(bookName);
+    }
+
+    public List<Publisher> searchByBookPublisher(String bookName)
+    {
+        return  bookRepository.searchByBookPublisher(bookName);
+    }
+
+    public List<Review> searchByBookReview(int bookId)
+    {
+        return  bookRepository.searchByBookReview(bookId);
+    }
+    
 
 }
 

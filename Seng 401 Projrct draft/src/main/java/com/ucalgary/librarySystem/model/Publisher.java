@@ -10,4 +10,20 @@ public class Publisher {
         this.Address=address;
         this.PhoneNumber=phoneNumber;
     }
+
+    public String getName()
+    {
+        return this.Name;
+    }
+
+    public String getAddress()
+    {
+        return this.Address;
+
+    }
+
+    public String getPhoneNumber()
+    {
+        return PhoneNumber;
+    }
 }
