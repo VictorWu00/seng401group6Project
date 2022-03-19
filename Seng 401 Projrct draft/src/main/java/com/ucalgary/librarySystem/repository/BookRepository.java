@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -30,6 +31,19 @@ public class BookRepository {
 
     }
 
+    public boolean insertRentedbook(int bookID, int userId, Date sdate, Date edate)
+    {
+        String sql = "insert into borrow (User_ID, Book_ID, Start_Date, End_Date) values (?,?,?,?)";
+        int count;
+        try{
+            count = this.jdbcTemplate.update(sql, userId, bookID, sdate, edate);
+            if (count > 0) return true;
+            return false;
+        }catch (EmptyResultDataAccessException e){
+        return false;
+        }
+    }
+
     public void deleteBook(String bookName, String Author){
         String query="delete from book where Auhor = ? and Name = ?";
         jdbcTemplate.update(query, bookName, Author);
@@ -42,6 +56,25 @@ public class BookRepository {
                 bookName
         );
         
+    }
+
+    public boolean searchRentedBook(int bookID)
+    {
+        String sql = "SELECT COUNT(*) FROM book WHERE  BOOKID = ? AND Status = ?";
+        int count;
+        try{
+            count = this.jdbcTemplate.queryForObject(sql, Integer.class, bookID, "Available");
+            if (count > 0) return true;
+            return false;
+        }catch (EmptyResultDataAccessException e){
+        return false;
+        }
+    }
+
+    public void updateStatus(int id)
+    {
+        String sql = "Update book Set Status = ? WHERE BOOKID = ?";
+        jdbcTemplate.update(sql, "Rented", id);
     }
 
     public List<Author> searchByBookAuthor(String bookName){

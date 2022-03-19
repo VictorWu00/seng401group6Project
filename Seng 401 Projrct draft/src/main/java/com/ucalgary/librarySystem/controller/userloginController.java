@@ -1,5 +1,7 @@
 package com.ucalgary.librarySystem.controller;
 
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import com.ucalgary.librarySystem.dal.StorageDAL;
@@ -37,6 +39,10 @@ public class userloginController {
     public String search(@RequestParam(name = "bookName", required = true) String bookName, Model model){
     
         List<Book> books=dal.searchByBookName(bookName);
+        if(books.size() == 0)
+        {
+            return "BookError";
+        }
         List<Author> authors = dal.searchByBookAuthor(bookName);
         List<Publisher> publishers = dal.searchByBookPublisher(bookName);
         int bookID = books.get(0).getBookID();
@@ -44,7 +50,7 @@ public class userloginController {
         List<Review> reviews = dal.searchByBookReview(bookID);
         Author auth = authors.get(0);
         Publisher pub = publishers.get(0);
-        if(books.size()!=0){
+        if(books.size() != 0){
             model.addAttribute("books",books);
             model.addAttribute("authors", auth);
             model.addAttribute("publishers", pub);
@@ -52,13 +58,65 @@ public class userloginController {
             return "Search";
         }
         else{
+            
             return "BookError";
         }
     }
-
     @RequestMapping("/UserRent")
-    public String jumpToRentpage(){
+    public String jumpToRent()
+    {
         return "UserRent";
+    }
+
+    @RequestMapping("/UserRent2")
+    public String addRent( @RequestParam(name = "book", required = true) String bookID,
+    @RequestParam(name = "sdate", required = true) Date StartDate, @RequestParam(name = "edate", required = true) Date EndDate){
+        int id = Integer.parseInt(bookID);
+        User res = dal.getUserByEmail(Email);
+        this.userId = res.getUserID();
+        boolean available = dal.searchRentedBook(id);
+        if(!available)
+        {
+            return "rentError";
+        }
+        boolean rentedBook = dal.insertRentedBook(id, userId, StartDate, EndDate);
+        
+        Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
+        boolean dateC = false;
+        System.out.println(timeNow);
+        System.out.println(StartDate);
+        int state = timeNow.compareTo(StartDate);
+        if(state == 0)
+        {
+            dateC = true;
+        }
+        System.out.println(dateC);
+        if(rentedBook)
+        {
+            dal.updateStatus(id);
+            return "UserRent2";
+        }
+        else
+        {
+        return "rentError";
+        }
+    }
+
+    @RequestMapping("/UserRentError")
+    public String checkBookForRent(@RequestParam(name = "book", required = true) String bookID)
+    {
+        int id = Integer.parseInt(bookID);
+        boolean available = dal.searchRentedBook(id);
+
+        if(!available)
+        {
+        return "UserRentError";
+        }
+        else
+        {
+            return "UserRentAvailable";
+        }
+
     }
     @RequestMapping("/UserRate")
     public String jumpToRatepage(){
