@@ -42,11 +42,12 @@ public class userloginController {
         int bookID = books.get(0).getBookID();
 
         List<Review> reviews = dal.searchByBookReview(bookID);
-
+        Author auth = authors.get(0);
+        Publisher pub = publishers.get(0);
         if(books.size()!=0){
             model.addAttribute("books",books);
-            model.addAttribute("authors", authors);
-            model.addAttribute("publishers", publishers);
+            model.addAttribute("authors", auth);
+            model.addAttribute("publishers", pub);
             model.addAttribute("reviews", reviews);
             return "Search";
         }
