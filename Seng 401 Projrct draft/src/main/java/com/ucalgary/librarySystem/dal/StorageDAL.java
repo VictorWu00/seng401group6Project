@@ -106,5 +106,9 @@ public class StorageDAL {
         bookRepository.updateStatus(id);
     }
 
+    public boolean checkForRentedBook(int id, int uid)
+    {
+        return bookRepository.checkForRentedBook(id, uid);
+    }
 }
 
