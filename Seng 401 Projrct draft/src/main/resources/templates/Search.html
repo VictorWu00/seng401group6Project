@@ -79,16 +79,16 @@ function loadmessage() {
              <th style="color:black;font-size:20px;border: solid;">Library Location</th>
             </tr>
 
-        <tr>
-          <td style="width: 100px;color:black;font-size:15px; text-align: center;  border: solid;"><label th:text="${book.BookID}" th:each="book:${books}"></label></td>
-            <td style="width: 100px;color:black;font-size:15px; text-align: center;  border: solid;"><label th:text="${book.Name}" th:each="book:${books}"></label></td>
-            <td style="color:black;font-size:15px; text-align: center; border: solid;"><label th:text="${book.Description}" th:each="book:${books}"></label></td>
-            <td style="color:black;font-size:15px; text-align: center; border: solid;"><label th:text="${book.Year}" th:each="book:${books}"></label></td>
-            <td style="color:black;font-size:15px; text-align: center; border: solid;"><label th:text="${book.Category}" th:each="book:${books}"></label></td>
-            <td style="color:black;font-size:15px; text-align: center; border: solid;"><label th:text="${book.Author}" th:each="book:${books}"></label></td>
-            <td style="width: 150px; color:black;font-size:15px; text-align: center; border: solid;"><label th:text="${book.Publisher}" th:each="book:${books}"></label></td>
-            <td style="width: 150px;color:black;font-size:15px; text-align: center; border:  solid;"><label th:text="${book.SectionName}" th:each="book:${books}"></label></td>
-            <td style="width: 150px;color:black;font-size:15px; text-align: center; border:  solid;"><label th:text="${book.location}" th:each="book:${books}"></label></td>
+        <tr th:each="book:${books}">
+          <td style="width: 100px;color:black;font-size:15px; text-align: center;  border: solid;"><label th:text="${book.BookID}" ></label></td>
+            <td style="width: 100px;color:black;font-size:15px; text-align: center;  border: solid;"><label th:text="${book.Name}" ></label></td>
+            <td style="color:black;font-size:15px; text-align: center; border: solid;"><label th:text="${book.Description}" ></label></td>
+            <td style="color:black;font-size:15px; text-align: center; border: solid;"><label th:text="${book.Year}" ></label></td>
+            <td style="color:black;font-size:15px; text-align: center; border: solid;"><label th:text="${book.Category}" ></label></td>
+            <td style="color:black;font-size:15px; text-align: center; border: solid;"><label th:text="${book.Author}" ></label></td>
+            <td style="width: 150px; color:black;font-size:15px; text-align: center; border: solid;"><label th:text="${book.Publisher}" ></label></td>
+            <td style="width: 150px;color:black;font-size:15px; text-align: center; border:  solid;"><label th:text="${book.SectionName}" ></label></td>
+            <td style="width: 150px;color:black;font-size:15px; text-align: center; border:  solid;"><label th:text="${book.location}" ></label></td>
         </tr>
       
 </tr>
@@ -105,6 +105,7 @@ function loadmessage() {
                 x.style.display = 'none';
             }
         }
+        
 </SCRIPT>
 <DIV ID="info" style="display:none; position:relative; left:400px; top:300px;">
 <strong>Author Information</strong>
@@ -147,10 +148,10 @@ function loadmessage() {
       <th style="color:black;font-size:20px;border:  solid;">Review Date</th>
      </tr>
 
- <tr>
-   <td style="width: 100px;color:black;font-size:15px; text-align: center;  border: solid;"><label th:text="${review.Description}" th:each="review:${reviews}"></label></td>
-     <td style="width: 100px;color:black;font-size:15px; text-align: center;  border: solid;"><label th:text="${review.Rating}" th:each="review:${reviews}"></label></td>
-     <td style="color:black;font-size:15px; text-align: center; border: solid;"><label th:text="${review.Date}" th:each="review:${reviews}"></label></td>
+ <tr th:each="review:${reviews}">
+   <td style="width: 100px;color:black;font-size:15px; text-align: center;  border: solid;"><label th:text="${review.Description}"></label></td>
+     <td style="width: 100px;color:black;font-size:15px; text-align: center;  border: solid;"><label th:text="${review.Rating}" ></label></td>
+     <td style="color:black;font-size:15px; text-align: center; border: solid;"><label th:text="${review.Date}" ></label></td>
  </tr>
 
 </tr>
