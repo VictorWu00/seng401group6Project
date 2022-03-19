@@ -1,6 +1,7 @@
 package com.ucalgary.librarySystem.controller;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -74,22 +75,41 @@ public class userloginController {
         int id = Integer.parseInt(bookID);
         User res = dal.getUserByEmail(Email);
         this.userId = res.getUserID();
+        if(!bookID.equals(""))
+        {
         boolean available = dal.searchRentedBook(id);
         if(!available)
         {
             return "rentError";
         }
-        boolean rentedBook = dal.insertRentedBook(id, userId, StartDate, EndDate);
+        }
+        else
+        {
+            return "enterBook";
+        }
         
+        boolean alRented =  dal.checkForRentedBook(id, userId);
+        if(alRented)
+        {
+            return "rentError";
+        }
         Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
+        String s1 = sdf.format(timeNow);
+        String s2 = sdf.format(StartDate);
         boolean dateC = false;
-        System.out.println(timeNow);
-        System.out.println(StartDate);
-        int state = timeNow.compareTo(StartDate);
-        if(state == 0)
+        int state = StartDate.compareTo(timeNow);
+        System.out.println(s1);
+        System.out.println(s2);
+        System.out.println("state "+ state);
+        if(s1.equals(s2) || state >=0)
         {
             dateC = true;
         }
+
+        if(dateC)
+        {
+        boolean rentedBook = dal.insertRentedBook(id, userId, StartDate, EndDate);
         System.out.println(dateC);
         if(rentedBook)
         {
@@ -100,14 +120,20 @@ public class userloginController {
         {
         return "rentError";
         }
+        }
+        else
+        {
+            return "currentDate";
+        }
     }
 
     @RequestMapping("/UserRentError")
     public String checkBookForRent(@RequestParam(name = "book", required = true) String bookID)
     {
+        if(!bookID.equals(""))
+        {
         int id = Integer.parseInt(bookID);
         boolean available = dal.searchRentedBook(id);
-
         if(!available)
         {
         return "UserRentError";
@@ -116,7 +142,11 @@ public class userloginController {
         {
             return "UserRentAvailable";
         }
-
+        }
+        else
+        {
+            return "enterBook";
+        }
     }
     @RequestMapping("/UserRate")
     public String jumpToRatepage(){

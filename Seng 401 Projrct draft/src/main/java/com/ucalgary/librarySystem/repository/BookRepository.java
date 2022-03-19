@@ -71,6 +71,19 @@ public class BookRepository {
         }
     }
 
+    public boolean checkForRentedBook(int bookID, int userID)
+    {
+        String sql = "SELECT COUNT(*) FROM borrow WHERE  User_ID = ? AND Book_ID = ?";
+        int count;
+        try{
+            count = this.jdbcTemplate.queryForObject(sql, Integer.class, userID, bookID);
+            if (count > 0) return true;
+            return false;
+        }catch (EmptyResultDataAccessException e){
+        return false;
+        }
+    }
+
     public void updateStatus(int id)
     {
         String sql = "Update book Set Status = ? WHERE BOOKID = ?";
