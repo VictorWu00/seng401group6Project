@@ -170,7 +170,10 @@ public class userloginController {
         }
     }
     @RequestMapping("/UserRate")
-    public String jumpToRatepage(){
+    public String jumpToRatepage(Model model){
+        User res = dal.getUserByEmail(Email);
+        String name = res.getUserName();
+        model.addAttribute("name", name);
         return "UserRate";
     }
     @RequestMapping("/UserInfo")
