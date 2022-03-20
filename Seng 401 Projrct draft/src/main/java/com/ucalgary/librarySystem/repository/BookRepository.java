@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.sql.Types;
 import com.ucalgary.librarySystem.model.Book;
+import com.ucalgary.librarySystem.model.Borrow;
 import com.ucalgary.librarySystem.model.Publisher;
 import com.ucalgary.librarySystem.model.Review;
 import com.ucalgary.librarySystem.model.Admin;
@@ -120,6 +121,40 @@ public class BookRepository {
         );
     }
 
+    public List<Borrow> searchBorrowBooks(int user_id)
+    {
+        return jdbcTemplate.query(
+            "SELECT borrow.Book_ID, book.Name, borrow.Start_Date, borrow.End_Date FROM borrow, book WHERE borrow.Book_ID = book.BOOKID AND borrow.User_ID = ?",
+                BookRepository::mapAllBorrow, user_id
+        );
+    }
+
+    public List<Review> searchReviewByUser(int user_id)
+    {
+        return jdbcTemplate.query(
+            "SELECT review.Book_ID, book.Name, review.Description, review.Rating, review.ReviewDate FROM review, book WHERE review.Book_ID = book.BOOKID AND review.User_ID = ?",
+                BookRepository::mapAllReview2, user_id
+        );
+    }
+
+    public boolean checkUserReview(int user_id, int book_id)
+    {
+        String sql = "SELECT COUNT(*) FROM review WHERE User_ID = ? AND Book_ID = ?";
+        int count;
+        try{
+            count = this.jdbcTemplate.queryForObject(sql, Integer.class, user_id, book_id);
+            if (count > 0) return true;
+            return false;
+        }catch (EmptyResultDataAccessException e){
+        return false;
+        }
+    }
+
+    public void deleteReview(int userId, int bookID)
+    {
+        String query="delete from review where User_ID = ? AND Book_ID = ?";
+        jdbcTemplate.update(query, userId, bookID);
+    }
 
     private static Book mapAllBooks(ResultSet rs,int rowNum) throws SQLException{
         return new Book(
@@ -160,6 +195,25 @@ public class BookRepository {
         );
     }
 
+
+    private static Borrow mapAllBorrow(ResultSet rs,int rowNum) throws SQLException{
+        return new Borrow(
+            rs.getInt("Book_ID"),
+            rs.getString("Name"),
+            rs.getString("Start_Date"),
+            rs.getString("End_Date")
+        );
+    }
+
+    private static Review mapAllReview2(ResultSet rs,int rowNum) throws SQLException{
+        return new Review(
+            rs.getInt("Book_ID"),
+            rs.getString("Name"),
+            rs.getString("Description"),
+            rs.getString("Rating"),
+            rs.getString("ReviewDate")
+        );
+
     public boolean writeReview(int userID,int bookID,String review,String rating, Date date){
         String query="INSERT INTO review (User_ID, Book_ID, Description, Rating, ReviewDate) values (?,?,?,?,?)";
         int count;
@@ -197,6 +251,7 @@ public class BookRepository {
         else{
             return false;
         }
+
     }
 
     }

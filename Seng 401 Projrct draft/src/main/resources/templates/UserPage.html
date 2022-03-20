@@ -34,7 +34,7 @@
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
       <a href="UserPage" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-        <span class="fs-4"><strong>User Page</strong></span>
+        <span class="fs-4"><strong>User Page -- <label th:text="${name}"></label></strong></span>
       </a>
 
       <ul class="nav nav-pills">
@@ -55,12 +55,53 @@ function loadmessage() {
 }
 </script>
 <center>
-<img src = "user.png" style = "position: relative; top: 100px; left: 0px;" width = "800" height = "600">
+<h1>User Rented Books</h1>
+<table>
+  <tr>
+  <table align = "center border" border="5px" style = "position: relative; top: 50px; width:850px; background-color:powderblue; line-height:20px; line-width: 60px; margin-left:auto;margin-right:auto;" >
+   <th style="color:black;font-size:20px; border:  solid;">Book ID</th>
+  <th style="color:black;font-size:20px; border:  solid;">Name</th>
+  <th style="color:black;font-size:20px;border:  solid;">Rent Start Date</th>
+  <th style="color:black;font-size:20px;border:  solid;">Rent End Date</th>
+ </tr>
+<tr th:each="borrow:${borrow}">
+<td style="width: 100px;color:black;font-size:15px; text-align: center;  border: solid;"><label th:text="${borrow.BookID}" ></label></td>
+ <td style="width: 100px;color:black;font-size:15px; text-align: center;  border: solid;"><label th:text="${borrow.BookName}" ></label></td>
+ <td style="width: 100px;color:black;font-size:15px; text-align: center;  border: solid;"><label th:text="${borrow.sDate}" ></label></td>
+ <td style="width: 100px;color:black;font-size:15px; text-align: center;  border: solid;"><label th:text="${borrow.eDate}" ></label></td>
+</tr>
+
+</table>
 </center>
-</body>
 
 
 
+<center>
+  <h1 style="position:relative; top:200px">User Books Reviews</h1>
+  <table>
+    <tr>
+    <table align = "center border" border="5px" style = "position: relative; top:250px; width:500px; background-color:powderblue; line-height:20px; line-width: 60px; margin-left:auto;margin-right:auto;" >
+     <th style="color:black;font-size:20px; border:  solid;">Book ID</th>
+    <th style="color:black;font-size:20px; border:  solid;">Name</th>
+    <th style="color:black;font-size:20px;border:  solid;">Review Description</th>
+    <th style="color:black;font-size:20px;border:  solid;">Review Rating</th>
+    <th style="color:black;font-size:20px;border:  solid;">Review Date</th>
+   </tr>
+  <tr th:each="review:${reviews}">
+  <td style="width: 100px;color:black;font-size:15px; text-align: center;  border: solid;"><label th:text="${review.bookID}" ></label></td>
+   <td style="width: 100px;color:black;font-size:15px; text-align: center;  border: solid;"><label th:text="${review.bookName}" ></label></td>
+   <td style="width: 100px;color:black;font-size:15px; text-align: center;  border: solid;"><label th:text="${review.Description}" ></label></td>
+   <td style="width: 100px;color:black;font-size:15px; text-align: center;  border: solid;"><label th:text="${review.Rating}" ></label></td>
+   <td style="width: 100px;color:black;font-size:15px; text-align: center;  border: solid;"><label th:text="${review.Date}" ></label></td>
+  </tr>
+  
+  </table>
+  </center>
+
+<center>
+  <input type="text" id="book" name="book" style="position:relative; left:0px; top:400px;" placeholder="Enter Book ID.......">
+  <input type="button" id ="remove" name="Remove" value="Remove Review" style="position:relative; left:0px; top:400px;" onclick="location.href ='/ReviewRemove?bookID='+document.getElementById('book').value;" >
+</center>
 </html>
 
 

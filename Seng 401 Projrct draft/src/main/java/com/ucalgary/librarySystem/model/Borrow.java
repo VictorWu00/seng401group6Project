@@ -1,19 +1,59 @@
 package com.ucalgary.librarySystem.model;
 
+
 import javax.management.loading.PrivateClassLoader;
 
 public class Borrow {
-    private int User_ID;
-    private int Book_ID;
-    private String Start_date;
-    private String End_date;
+    private int UserID;
+    private int BookID;
+    private String sd ;
+    private String ed;
+    private String BookName;
+    private String sDate;
+    private String eDate;
 
-    public Borrow(){}
+    public Borrow()
+    {}
 
-    public Borrow(int user_id, int book_id, String sDate, String eDate){
-        this.User_ID=user_id;
-        this.Book_ID=book_id;
-        this.Start_date=sDate;
-        this.End_date=eDate;
+    public Borrow(int Book_ID, String BookName, String Start_date, String End_date){
+        this.BookID=Book_ID;
+        this.BookName = BookName;
+        this.sDate=Start_date;
+        this.eDate=End_date;
+    }
+
+    public int getUserID()
+    {
+        return this.UserID;
+    }
+
+    public int getBookID()
+    {
+        return this.BookID;
+    }
+
+    public String getStartDate()
+    {
+        return this.sd;
+    }
+
+    public String getEndDate()
+    {
+        return this.ed;
+    }
+
+    public String getBookName()
+    {
+        return this.BookName;
+    }
+
+    public String getsDate()
+    {
+        return this.sDate;
+    }
+
+    public String geteDate()
+    {
+        return this.eDate;
     }
 }
