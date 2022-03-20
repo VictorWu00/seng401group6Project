@@ -40,12 +40,8 @@ public class userloginController {
     public String search(@RequestParam(name = "bookName", required = true) String bookName, Model model){
     
         List<Book> books=dal.searchByBookName(bookName);
-<<<<<<< HEAD
-        if(books.size()==0){
-=======
         if(books.size() == 0)
         {
->>>>>>> acfb05ad521ffd49eef26e13356bc14f05011472
             return "BookError";
         }
         List<Author> authors = dal.searchByBookAuthor(bookName);
@@ -76,6 +72,9 @@ public class userloginController {
     @RequestMapping("/UserRent2")
     public String addRent( @RequestParam(name = "book", required = true) String bookID,
     @RequestParam(name = "sdate", required = true) Date StartDate, @RequestParam(name = "edate", required = true) Date EndDate){
+        if(bookID.equals("")){
+            return "AllFieldsneedFill";
+        }
         int id = Integer.parseInt(bookID);
         User res = dal.getUserByEmail(Email);
         this.userId = res.getUserID();
@@ -167,8 +166,8 @@ public class userloginController {
         model.addAttribute("userEmail", res.getUserEmail());
         model.addAttribute("userBalance", res.getUserBalance());
 
-        System.out.println(res.getUserID());
-        System.out.println(Email);
+        // System.out.println(res.getUserID());
+        // System.out.println(Email);
         return "UserInfo";
     }
 
@@ -208,6 +207,56 @@ public class userloginController {
         }
     }
 
+    @RequestMapping("/checkBookName")
+    public String checkBookName(Model model, @RequestParam(name = "book", required = true) String bookID)
+    {
+        if(!bookID.equals("")){
+            int id = Integer.parseInt(bookID);
+            List<Book> booklist = dal.searchByBookID(id);
+            if(booklist.size()==0)
+            {
+                return "RateCheckBookError";
+            }
+            else
+            {
+                model.addAttribute("booklist",booklist.get(0).getName());
+                return "RateCheckBook";
+            }
+        }
+        else{
+            return "RateCheckBookError";
+        }
+    }
 
+    @RequestMapping("/postReview")
+    public String postReview(Model model, @RequestParam(name="book",required = true)String bookID,
+    @RequestParam(name="description",required=true)String description,
+    @RequestParam(name="rating",required=true)String rating){
+        if(bookID.equals("")||description.equals("")||rating.equals("")){
+            return "AllFieldsneedFill";
+        }
+        //System.out.println("HERE");
+        String formated = rating + " stars";
+        int id = Integer.parseInt(bookID);
+        User res = dal.getUserByEmail(Email);
+        this.userId = res.getUserID();
+        boolean flag = dal.HasNotReviewedYet(userId, id);
+        if(!flag){
+            return "HasReviewed";
+        }
+
+        List<Book> booklist = dal.searchByBookID(id);
+        if(booklist.size()==0){
+            return "RateCheckBookError";
+        }
+        Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
+        boolean write_flag = dal.writeReview(userId, id, description, formated, timeNow);
+        if(write_flag){
+            return "RateSuccess";
+        }
+        else{
+            return "RateCheckBookError";
+        }
+    }
 }
 
