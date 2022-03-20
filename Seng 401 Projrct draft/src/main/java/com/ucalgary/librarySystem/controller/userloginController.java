@@ -37,6 +37,9 @@ public class userloginController {
     public String search(@RequestParam(name = "bookName", required = true) String bookName, Model model){
     
         List<Book> books=dal.searchByBookName(bookName);
+        if(books.size()==0){
+            return "BookError";
+        }
         List<Author> authors = dal.searchByBookAuthor(bookName);
         List<Publisher> publishers = dal.searchByBookPublisher(bookName);
         int bookID = books.get(0).getBookID();
