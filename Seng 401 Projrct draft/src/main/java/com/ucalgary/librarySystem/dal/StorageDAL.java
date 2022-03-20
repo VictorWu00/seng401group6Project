@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.util.StringUtils;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -88,7 +89,26 @@ public class StorageDAL {
     {
         return  bookRepository.searchByBookReview(bookId);
     }
+
+    public boolean searchRentedBook(int bookId)
+    {
+        return bookRepository.searchRentedBook(bookId);
+    }
     
 
+    public boolean insertRentedBook(int bookId, int userId, Date sdate, Date eDate)
+    {
+        return bookRepository.insertRentedbook(bookId, userId, sdate, eDate);
+    }
+
+    public void updateStatus(int id)
+    {
+        bookRepository.updateStatus(id);
+    }
+
+    public boolean checkForRentedBook(int id, int uid)
+    {
+        return bookRepository.checkForRentedBook(id, uid);
+    }
 }
 
