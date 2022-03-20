@@ -130,6 +130,7 @@ public class StorageDAL {
     public void deleteReview(int uid, int bid)
     {
          bookRepository.deleteReview(uid, bid);
+    }
 
     public boolean writeReview(int userID, int bookID,String review,String rating,Date date){
         return bookRepository.writeReview(userID, bookID,review, rating,date);

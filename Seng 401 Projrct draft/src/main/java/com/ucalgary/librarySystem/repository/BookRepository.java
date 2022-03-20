@@ -213,6 +213,7 @@ public class BookRepository {
             rs.getString("Rating"),
             rs.getString("ReviewDate")
         );
+    }
 
     public boolean writeReview(int userID,int bookID,String review,String rating, Date date){
         String query="INSERT INTO review (User_ID, Book_ID, Description, Rating, ReviewDate) values (?,?,?,?,?)";
