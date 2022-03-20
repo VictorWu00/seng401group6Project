@@ -57,27 +57,36 @@ function loadmessage() {
 <center>
 <h2 style="position:relative; left:0px; top:50px; font-size:30px;">Review Form</h2>
 <p style="position:relative; left:-30px; top:70px;"><span class="error">* required field</span></p>
-<form method="post">  
+
+  <center>
   <label style="position:relative; left:45px; top:100px;">*Book ID: </label>
-  <input type="text" name="book" style="position:relative; left:45px; top:100px;">
+  <input type="text" id="book" name="book" style="position:relative; left:45px; top:100px;">
+  <button id="button"  style="position:relative; left:135px; top:100px; padding:1px 20px;" name="submit" onclick="location.href ='/checkBookName?book='+document.getElementById('book').value;">check book Availability</button>
+  </center>
   <br><br>
+  <center>
   <label style="position:relative; left:105px; top: 100px;">*Review: </label>
-  <textarea style="position:relative; left:105px; top:140px;" name="description" rows="5" cols="40"></textarea>
+  <textarea style="position:relative; left:105px; top:140px;" id ="description" name="description" rows="5" cols="40"></textarea>
+  </center>
   <br><br>
   <label style="position:relative; left:50px; top:150px;">*Rating (in stars):</label>
-  <input style="position:relative; left:50px; top:150px;" type="radio" name="rating" value="1">
+  <input style="position:relative; left:50px; top:150px;" type="radio" id="rating" name="rating" value="1">
   <label style="position:relative; left:35px; top:170px;">1</label>
-  <input style="position:relative; left:100px; top:150px;" type="radio" name="rating" value="2">
+  <input style="position:relative; left:100px; top:150px;" type="radio" id="rating" name="rating" value="2">
   <label style="position:relative; left:85px; top:170px;">2</label>
-  <input style="position:relative; left:150px; top:150px;" type="radio" name="rating" value="3">
+  <input style="position:relative; left:150px; top:150px;" type="radio" id="rating" name="rating" value="3">
   <label style="position:relative; left:135px; top:170px;">3</label>
-  <input style="position:relative; left:200px; top:150px;" type="radio" name="rating" value="4">
+  <input style="position:relative; left:200px; top:150px;" type="radio" id="rating" name="rating" value="4">
   <label style="position:relative; left:185px; top:170px;">4</label>
-  <input style="position:relative; left:250px; top:150px;" type="radio" name="rating" value="5">
+  <input style="position:relative; left:250px; top:150px;" type="radio" id="rating" name="rating" value="5">
   <label style="position:relative; left:235px; top:170px;">5</label>
   <br><br>
-  <input style="position:relative; left:0px; top:200px; padding:10px 20px;" type="submit" name="submit" value="Submit">  
-</form>
+  <!-- <button id = "button2" style="position:relative; left:0px; top:200px; padding:10px 20px;" name="submit"
+  onclick="location.href='/postReview?book='+documents.getElementById('book').value +
+  '&description='+documents.getElementById('description').value + '&rating='+docuemnts.getElementById('rating').value";>Submit</button>  -->
+  <button id="Mbutton" style="position:relative; left:0px; top:200px; padding:10px 20px;" name="submit" onclick="location.href ='/postReview?book='+document.getElementById('book').value +
+  '&rating='+document.getElementById('rating').value + '&description='+document.getElementById('description').value;">Submit</button>
+
 </center>
 
 </html>

@@ -110,5 +110,17 @@ public class StorageDAL {
     {
         return bookRepository.checkForRentedBook(id, uid);
     }
+
+    public boolean writeReview(int userID, int bookID,String review,String rating,Date date){
+        return bookRepository.writeReview(userID, bookID,review, rating,date);
+    }
+
+    public List<Book> searchByBookID(int bookID){
+        return bookRepository.searchByBookID(bookID);
+    }
+
+    public boolean HasNotReviewedYet(int userID, int bookID){
+        return bookRepository.HasNotReviewedYet(userID, bookID);
+    }
 }
 
