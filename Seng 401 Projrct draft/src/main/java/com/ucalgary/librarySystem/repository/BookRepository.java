@@ -195,6 +195,7 @@ public class BookRepository {
         );
     }
 
+
     private static Borrow mapAllBorrow(ResultSet rs,int rowNum) throws SQLException{
         return new Borrow(
             rs.getInt("Book_ID"),
@@ -212,6 +213,45 @@ public class BookRepository {
             rs.getString("Rating"),
             rs.getString("ReviewDate")
         );
+
+    public boolean writeReview(int userID,int bookID,String review,String rating, Date date){
+        String query="INSERT INTO review (User_ID, Book_ID, Description, Rating, ReviewDate) values (?,?,?,?,?)";
+        int count;
+        try{
+            count = this.jdbcTemplate.update(query,userID,bookID,review,rating,date);
+            if(count>0){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }catch(EmptyResultDataAccessException e){
+            return false;
+        }
+    }
+
+    public List<Book> searchByBookID(int bookID){
+        return jdbcTemplate.query(
+            "SELECT BookID, ISBN, Name, Description, Category, Year, Auhor, Publisher, SectionName, Location FROM book WHERE BookID = ?",
+            BookRepository::mapAllBooks,
+            bookID
+        );
+    }
+
+    public boolean HasNotReviewedYet(int userID, int bookID){
+        List<Review> res = jdbcTemplate.query(
+            "SELECT Description,Rating,ReviewDate FROM review WHERE User_ID = ? AND Book_ID = ?",
+            BookRepository::mapAllReviews,
+            userID,
+            bookID
+        );
+        if(res.size()==0){
+            return true;
+        }
+        else{
+            return false;
+        }
+
     }
 
     }

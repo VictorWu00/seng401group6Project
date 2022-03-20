@@ -86,6 +86,10 @@ public class userloginController {
     public String addRent(Model model, @RequestParam(name = "book", required = true) String bookID,
     @RequestParam(name = "sdate", required = true) Date StartDate, @RequestParam(name = "edate", required = true) Date EndDate){
 
+        if(bookID.equals("")){
+            return "AllFieldsneedFill";
+        }
+
         int id = Integer.parseInt(bookID);
         User res = dal.getUserByEmail(Email);
         this.userId = res.getUserID();
@@ -183,6 +187,11 @@ public class userloginController {
         model.addAttribute("name", name);
         System.out.println(res.getUserID());
         System.out.println(Email);
+
+
+        // System.out.println(res.getUserID());
+        // System.out.println(Email);
+
         return "UserInfo";
     }
 
@@ -262,6 +271,59 @@ public class userloginController {
         }
         else{
             return "error";
+        }
+    }
+
+
+    @RequestMapping("/checkBookName")
+    public String checkBookName(Model model, @RequestParam(name = "book", required = true) String bookID)
+    {
+        if(!bookID.equals("")){
+            int id = Integer.parseInt(bookID);
+            List<Book> booklist = dal.searchByBookID(id);
+            if(booklist.size()==0)
+            {
+                return "RateCheckBookError";
+            }
+            else
+            {
+                model.addAttribute("booklist",booklist.get(0).getName());
+                return "RateCheckBook";
+            }
+        }
+        else{
+            return "RateCheckBookError";
+        }
+    }
+
+    @RequestMapping("/postReview")
+    public String postReview(Model model, @RequestParam(name="book",required = true)String bookID,
+    @RequestParam(name="description",required=true)String description,
+    @RequestParam(name="rating",required=true)String rating){
+        if(bookID.equals("")||description.equals("")||rating.equals("")){
+            return "AllFieldsneedFill";
+        }
+        //System.out.println("HERE");
+        String formated = rating + " stars";
+        int id = Integer.parseInt(bookID);
+        User res = dal.getUserByEmail(Email);
+        this.userId = res.getUserID();
+        boolean flag = dal.HasNotReviewedYet(userId, id);
+        if(!flag){
+            return "HasReviewed";
+        }
+
+        List<Book> booklist = dal.searchByBookID(id);
+        if(booklist.size()==0){
+            return "RateCheckBookError";
+        }
+        Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
+        boolean write_flag = dal.writeReview(userId, id, description, formated, timeNow);
+        if(write_flag){
+            return "RateSuccess";
+        }
+        else{
+            return "RateCheckBookError";
         }
     }
 }

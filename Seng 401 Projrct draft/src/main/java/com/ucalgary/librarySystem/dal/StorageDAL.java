@@ -112,6 +112,7 @@ public class StorageDAL {
         return bookRepository.checkForRentedBook(id, uid);
     }
 
+
     public List<Borrow> searchBorrowBooks(int UserID)
     {
         return bookRepository.searchBorrowBooks(UserID);
@@ -129,6 +130,18 @@ public class StorageDAL {
     public void deleteReview(int uid, int bid)
     {
          bookRepository.deleteReview(uid, bid);
+
+    public boolean writeReview(int userID, int bookID,String review,String rating,Date date){
+        return bookRepository.writeReview(userID, bookID,review, rating,date);
+    }
+
+    public List<Book> searchByBookID(int bookID){
+        return bookRepository.searchByBookID(bookID);
+    }
+
+    public boolean HasNotReviewedYet(int userID, int bookID){
+        return bookRepository.HasNotReviewedYet(userID, bookID);
+
     }
 }
 
