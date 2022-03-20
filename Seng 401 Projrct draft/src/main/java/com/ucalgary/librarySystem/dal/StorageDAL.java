@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import com.ucalgary.librarySystem.model.Admin;
 import com.ucalgary.librarySystem.model.Author;
 import com.ucalgary.librarySystem.model.Book;
+import com.ucalgary.librarySystem.model.Borrow;
 import com.ucalgary.librarySystem.model.Publisher;
 import com.ucalgary.librarySystem.model.Review;
 import com.ucalgary.librarySystem.model.User;
@@ -109,6 +110,25 @@ public class StorageDAL {
     public boolean checkForRentedBook(int id, int uid)
     {
         return bookRepository.checkForRentedBook(id, uid);
+    }
+
+    public List<Borrow> searchBorrowBooks(int UserID)
+    {
+        return bookRepository.searchBorrowBooks(UserID);
+    }
+    public List<Review> searchReviewByUser(int UserID)
+    {
+        return bookRepository.searchReviewByUser(UserID);
+    }
+
+    public boolean checkUserReview(int uid, int bid)
+    {
+        return bookRepository.checkUserReview(uid, bid);
+    }
+
+    public void deleteReview(int uid, int bid)
+    {
+         bookRepository.deleteReview(uid, bid);
     }
 }
 

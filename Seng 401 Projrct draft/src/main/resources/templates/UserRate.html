@@ -34,7 +34,7 @@
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
       <a href="UserPage" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-        <span class="fs-4"><strong>User Page</strong></span>
+        <span class="fs-4"><strong>User Page -- <label th:text="${name}"></label></strong></span>
       </a>
 
       <ul class="nav nav-pills">
@@ -57,7 +57,6 @@ function loadmessage() {
 <center>
 <h2 style="position:relative; left:0px; top:50px; font-size:30px;">Review Form</h2>
 <p style="position:relative; left:-30px; top:70px;"><span class="error">* required field</span></p>
-<form method="post">  
   <label style="position:relative; left:45px; top:100px;">*Book ID: </label>
   <input type="text" name="book" style="position:relative; left:45px; top:100px;">
   <br><br>
@@ -76,8 +75,7 @@ function loadmessage() {
   <input style="position:relative; left:250px; top:150px;" type="radio" name="rating" value="5">
   <label style="position:relative; left:235px; top:170px;">5</label>
   <br><br>
-  <input style="position:relative; left:0px; top:200px; padding:10px 20px;" type="submit" name="submit" value="Submit">  
-</form>
+  <input style="position:relative; left:0px; top:200px; padding:10px 20px;" type="submit" name="submit" value="Submit" onclick="location.href = './UserPage'">  
 </center>
 
 </html>
