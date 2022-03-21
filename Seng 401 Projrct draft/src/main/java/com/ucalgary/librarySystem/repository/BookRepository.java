@@ -52,7 +52,7 @@ public class BookRepository {
     
     public List<Book> searchByBookName(String bookName){
         return jdbcTemplate.query(
-                "SELECT BookID, ISBN, Name, Description, Category, Year, Auhor, Publisher, SectionName, Location FROM book WHERE Name = ?",
+                "SELECT BookID, ISBN, Name, Description, Category, Year, Auhor, Publisher, SectionName, Location, Status FROM book WHERE Name = ?",
                 BookRepository::mapAllBooks,
                 bookName
         );
@@ -162,6 +162,8 @@ public class BookRepository {
         String query="delete from review where User_ID = ? AND Book_ID = ?";
         jdbcTemplate.update(query, userId, bookID);
     }
+    
+    
 
     private static Book mapAllBooks(ResultSet rs,int rowNum) throws SQLException{
         return new Book(

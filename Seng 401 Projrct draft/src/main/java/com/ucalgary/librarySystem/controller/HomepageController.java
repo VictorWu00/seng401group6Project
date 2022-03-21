@@ -12,6 +12,7 @@ import org.w3c.dom.html.HTMLCollection;
 import java.util.List;
 
 import com.ucalgary.librarySystem.dal.StorageDAL;
+import com.ucalgary.librarySystem.model.Book;
 import com.ucalgary.librarySystem.model.User;
 
 @Controller
@@ -56,6 +57,23 @@ public class HomepageController {
     public String search(Model model){
 
         return "GuestSearch";
+    }
+
+    @RequestMapping("/GuestSearch")
+    public String search2(@RequestParam(name = "bookName", required = true) String bookName, Model model){
+        List<Book> books=dal.searchByBookName(bookName);
+        if(books.size() == 0)
+        {
+            return "BookError2";
+        }
+        if(books.size() != 0){
+            model.addAttribute("books",books);
+            return "GuestSearchRes";
+        }
+        else{
+            
+            return "BookError2";
+        }
     }
 
 }

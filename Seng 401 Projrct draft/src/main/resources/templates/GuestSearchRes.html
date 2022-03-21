@@ -34,15 +34,15 @@
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
       <a href="UserPage" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-        <span class="fs-4"><strong>User Page -- ></strong></span>
+        <span class="fs-4"><strong>Guest Search<strong></span>
       </a>
 
-      <ul class="nav nav-pills">>
-        <li class="nav-item"><a href="index" class="nav-link">Logout</a></li>
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a href="index" class="nav-link active" style="font-weight:normal">Back</a></li>
       </ul>
     </header>
   </div>
-<body  style="background-color:rgba(42, 185, 196, 0.616);">
+<body  style="background-color:rgb(255, 255, 255);">
 </body>
 
 <center>
@@ -50,7 +50,7 @@
   <input type="search" id="query" name="book" placeholder="Search books" style="position: relative; left:0px; top:200px; width:500px; height:30px;">
 </form>
 
-<button id="Mbutton" onclick="location.href = window.location.href = '/Search?bookName=' + document.getElementById('query').value;" style="position: relative; left:300px; top:170px; height:30px; background-color: bisque;">
+<button id="Mbutton" onclick="location.href = window.location.href = '/GuestSearch?bookName=' + document.getElementById('query').value;" style="position: relative; left:300px; top:170px; height:30px; background-color: bisque;">
   <strong>Search</strong>
 </button>
 </center>
@@ -67,19 +67,17 @@
              <th style="color:black;font-size:20px;border:  solid;">Book's Author</th>
              <th style="color:black;font-size:20px;border: solid;">Book's Publisher</th>
              <th style="color:black;font-size:20px;border:  solid;">Library's Section Name</th>
-             <th style="color:black;font-size:20px;border: solid;">Library Location</th>
             </tr>
 
-        <!-- <tr th:each="book:${books}">
-          <td style="width: 100px;color:black;font-size:15px; text-align: center;  border: solid;"><label th:text="${book.BookID}" ></label></td>
-            <td style="width: 100px;color:black;font-size:15px; text-align: center;  border: solid;"><label th:text="${book.Name}" ></label></td>
-            <td style="color:black;font-size:15px; text-align: center; border: solid;"><label th:text="${book.Description}" ></label></td>
-            <td style="color:black;font-size:15px; text-align: center; border: solid;"><label th:text="${book.Year}" ></label></td>
-            <td style="color:black;font-size:15px; text-align: center; border: solid;"><label th:text="${book.Category}" ></label></td>
-            <td style="color:black;font-size:15px; text-align: center; border: solid;"><label th:text="${book.Author}" ></label></td>
-            <td style="width: 150px; color:black;font-size:15px; text-align: center; border: solid;"><label th:text="${book.Publisher}" ></label></td>
-            <td style="width: 150px;color:black;font-size:15px; text-align: center; border:  solid;"><label th:text="${book.SectionName}" ></label></td>
-            <td style="width: 150px;color:black;font-size:15px; text-align: center; border:  solid;"><label th:text="${book.location}" ></label></td> -->
+        <tr th:each="book:${books}">
+          <td style="width: 100px;color:black;font-size:15px; text-align: center;  border: solid; font-weight:normal"><label th:text="${book.BookID}" ></label></td>
+            <td style="width: 100px;color:black;font-size:15px; text-align: center;  border: solid; font-weight:normal"><label th:text="${book.Name}" ></label></td>
+            <td style="color:black;font-size:15px; text-align: center; border: solid; font-weight:normal"><label th:text="${book.Description}" ></label></td>
+            <td style="color:black;font-size:15px; text-align: center; border: solid; font-weight:normal"><label th:text="${book.Year}" ></label></td>
+            <td style="color:black;font-size:15px; text-align: center; border: solid; font-weight:normal"><label th:text="${book.Category}" ></label></td>
+            <td style="color:black;font-size:15px; text-align: center; border: solid; font-weight:normal"><label th:text="${book.Author}" ></label></td>
+            <td style="width: 150px; color:black;font-size:15px; text-align: center; border: solid; font-weight:normal"><label th:text="${book.Publisher}" ></label></td>
+            <td style="width: 150px;color:black;font-size:15px; text-align: center; border:  solid; font-weight:normal"><label th:text="${book.SectionName}" ></label></td>
         </tr> 
 </tr>
 

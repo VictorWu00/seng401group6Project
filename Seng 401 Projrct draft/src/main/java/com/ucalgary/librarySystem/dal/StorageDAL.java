@@ -151,5 +151,10 @@ public class StorageDAL {
         return bookRepository.HasNotReviewedYet(userID, bookID);
 
     }
+
+    public List<Book> searchguestBook(String bookName)
+    {
+        return bookRepository.searchguestBook(bookName);
+    }
 }
 

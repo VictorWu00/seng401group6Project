@@ -38,11 +38,11 @@
       </a>
 
       <ul class="nav nav-pills">
-        <li class="nav-item"><a href="index" class="nav-link">Back</a></li>
+        <li class="nav-item"><a href="index" class="nav-link active">Back</a></li>
       </ul>
     </header>
   </div>
-<body  style="background-color:rgba(42, 185, 196, 0.616);">
+<body  style="background-color:rgb(255, 255, 255);">
 </body>
 
 <center>
@@ -50,7 +50,7 @@
   <input type="search" id="query" name="book" placeholder="Search books" style="position: relative; left:0px; top:200px; width:500px; height:30px;">
 </form>
 
-<button id="Mbutton" onclick="location.href = 'GuestSearchRes'" style="position: relative; left:300px; top:170px; height:30px; background-color: bisque;">
+<button id="Mbutton" onclick="location.href = window.location.href = '/GuestSearch?bookName=' + document.getElementById('query').value;" style="position: relative; left:300px; top:170px; height:30px; background-color: bisque;">
   <strong>Search</strong>
 </button>
 </center>
