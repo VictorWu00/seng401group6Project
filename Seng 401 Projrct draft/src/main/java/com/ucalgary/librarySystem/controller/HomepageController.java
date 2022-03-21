@@ -44,7 +44,7 @@ public class HomepageController {
 
     @GetMapping("/about")
     public String about(Model model){
-        return "LocationPage";
+        return "about";
     }
 
     @GetMapping("/index")
