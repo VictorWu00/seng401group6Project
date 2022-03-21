@@ -1,25 +1,16 @@
 package com.ucalgary.librarySystem.dal;
 
+import com.ucalgary.librarySystem.model.*;
+import com.ucalgary.librarySystem.repository.AdminRepository;
+import com.ucalgary.librarySystem.repository.BookRepository;
+import com.ucalgary.librarySystem.repository.BorrowRepository;
+import com.ucalgary.librarySystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.util.StringUtils;
 
 import java.sql.Date;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import com.ucalgary.librarySystem.model.Admin;
-import com.ucalgary.librarySystem.model.Author;
-import com.ucalgary.librarySystem.model.Book;
-import com.ucalgary.librarySystem.model.Borrow;
-import com.ucalgary.librarySystem.model.Publisher;
-import com.ucalgary.librarySystem.model.Review;
-import com.ucalgary.librarySystem.model.User;
-import com.ucalgary.librarySystem.repository.AdminRepository;
-import com.ucalgary.librarySystem.repository.BookRepository;
-import com.ucalgary.librarySystem.repository.UserRepository;
-import com.ucalgary.librarySystem.repository.BorrowRepository;
 
 /**
  * Provides access to stored data, whether through a database or a file stored on the device.
@@ -152,9 +143,9 @@ public class StorageDAL {
 
     }
 
-    public List<Book> searchguestBook(String bookName)
+    /*public List<Book> searchguestBook(String bookName)
     {
         return bookRepository.searchguestBook(bookName);
-    }
+    }*/
 }
 

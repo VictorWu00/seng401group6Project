@@ -1,26 +1,21 @@
-package com.ucalgary.librarySystem.test;
+package com.ucalgray.librarySystem;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.ucalgary.librarySystem.model.Author;
+import com.ucalgary.librarySystem.model.Book;
+import com.ucalgary.librarySystem.repository.BookRepository;
 import org.junit.jupiter.api.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Description;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Types;
-import com.ucalgary.librarySystem.model.*;
-import com.ucalgary.librarySystem.repository.*;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+@Repository
 public class BookRepositoryTest {
 
+    @Autowired
     private BookRepository bookRepository;
 
     @Test

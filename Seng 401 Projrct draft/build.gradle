@@ -18,7 +18,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	runtimeOnly 'mysql:mysql-connector-java'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	//testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+//	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+	testImplementation('org.junit.jupiter:junit-jupiter:5.5.2')
 }
 
 test {
