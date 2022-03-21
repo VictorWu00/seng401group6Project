@@ -5,12 +5,14 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.util.StringUtils;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.ucalgary.librarySystem.model.Admin;
 import com.ucalgary.librarySystem.model.Author;
 import com.ucalgary.librarySystem.model.Book;
+import com.ucalgary.librarySystem.model.Borrow;
 import com.ucalgary.librarySystem.model.Publisher;
 import com.ucalgary.librarySystem.model.Review;
 import com.ucalgary.librarySystem.model.User;
@@ -92,9 +94,62 @@ public class StorageDAL {
     {
         return  bookRepository.searchByBookReview(bookId);
     }
+
+    public boolean searchRentedBook(int bookId)
+    {
+        return bookRepository.searchRentedBook(bookId);
+    }
     
     public boolean deleteBorrowInfo(int uID, int bID){
         return borrowRepository.deleteBorrowInfo(uID, bID);
+    }
+
+    public boolean insertRentedBook(int bookId, int userId, Date sdate, Date eDate)
+    {
+        return bookRepository.insertRentedbook(bookId, userId, sdate, eDate);
+    }
+
+    public void updateStatus(int id)
+    {
+        bookRepository.updateStatus(id);
+    }
+
+    public boolean checkForRentedBook(int id, int uid)
+    {
+        return bookRepository.checkForRentedBook(id, uid);
+    }
+
+
+    public List<Borrow> searchBorrowBooks(int UserID)
+    {
+        return bookRepository.searchBorrowBooks(UserID);
+    }
+    public List<Review> searchReviewByUser(int UserID)
+    {
+        return bookRepository.searchReviewByUser(UserID);
+    }
+
+    public boolean checkUserReview(int uid, int bid)
+    {
+        return bookRepository.checkUserReview(uid, bid);
+    }
+
+    public void deleteReview(int uid, int bid)
+    {
+         bookRepository.deleteReview(uid, bid);
+    }
+
+    public boolean writeReview(int userID, int bookID,String review,String rating,Date date){
+        return bookRepository.writeReview(userID, bookID,review, rating,date);
+    }
+
+    public List<Book> searchByBookID(int bookID){
+        return bookRepository.searchByBookID(bookID);
+    }
+
+    public boolean HasNotReviewedYet(int userID, int bookID){
+        return bookRepository.HasNotReviewedYet(userID, bookID);
+
     }
 }
 
