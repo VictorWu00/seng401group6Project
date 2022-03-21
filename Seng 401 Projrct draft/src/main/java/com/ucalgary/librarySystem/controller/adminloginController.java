@@ -1,5 +1,6 @@
 package com.ucalgary.librarySystem.controller;
 
+import java.time.Year;
 import java.util.List;
 
 import com.ucalgary.librarySystem.dal.StorageDAL;
@@ -64,8 +65,13 @@ public class adminloginController {
     }
 
     @RequestMapping("/AddB")
-    public String jumpToAdd(Model model, @RequestParam(name = "a", required = false) int isbn, @RequestParam(name = "b", required = false) String bname, @RequestParam(name = "c", required = false) String category, @RequestParam(name = "d", required = false) int year, @RequestParam(name = "e", required = false) String author, @RequestParam(name = "f", required = false) String publisher, @RequestParam(name = "g", required = false) String section, @RequestParam(name = "h", required = false) int location, @RequestParam(name = "i", required = false) String description){
-
+    public String jumpToAdd(Model model, @RequestParam(name = "a", required = false) String Isbn, @RequestParam(name = "b", required = false) String bname, @RequestParam(name = "c", required = false) String category, @RequestParam(name = "d", required = false) String Year, @RequestParam(name = "e", required = false) String author, @RequestParam(name = "f", required = false) String publisher, @RequestParam(name = "g", required = false) String section, @RequestParam(name = "h", required = false) int location, @RequestParam(name = "i", required = false) String description){
+        if(Isbn.equals("") || bname.equals("") || category.equals("") || Year.equals("") || author.equals("") || publisher.equals("") || section.equals("") || location==0 || description.equals("")){
+            return "noInputForAddB";
+        }
+        
+        int isbn=Integer.parseInt(Isbn);
+        int year=Integer.parseInt(Year);
         dal.addBook(isbn, bname, description, category, year, author, publisher, section, location);
         return "AddB";
     }
@@ -77,6 +83,9 @@ public class adminloginController {
 
     @RequestMapping("/DeleteB")
     public String jumpToDeleteB(Model model, @RequestParam(name = "name", required = false) String bName, @RequestParam(name = "author", required = false) String author){
+        if(bName.equals("") || author.equals("")){
+            return "errorForDeleteB";
+        }
         dal.deleteBook(bName, author);
         return "DeleteB";
     }
@@ -87,14 +96,13 @@ public class adminloginController {
     }
 
     @RequestMapping("/ModifyU")
-    public String jumpToModifyU(Model model, @RequestParam(name = "a", required = false) String address, @RequestParam(name = "b", required = false) String phone, @RequestParam(name = "c", required = false) String birth, @RequestParam(name = "d", required = false) double balance, @RequestParam(name = "e", required = false) String name){
+    public String jumpToModifyU(Model model, @RequestParam(name = "a", required = false) String address, @RequestParam(name = "b", required = false) String phone, @RequestParam(name = "c", required = false) String birth, @RequestParam(name = "d", required = false) String Balance, @RequestParam(name = "e", required = false) String name){
         
-        System.out.println(address);
-        System.out.println(birth);
-        System.out.println(phone);
-        System.out.println(balance);
-        System.out.println(name);
-    
+        if(address.equals("") || phone.equals("") || birth.equals("") || Balance.equals("") || name.equals(""))
+        {
+            return "errorForModifyU";
+        }
+        double balance=Double.parseDouble(Balance);;
         dal.modifyUser(name, address, phone, birth, balance);
         return "ModifyU";
     }
@@ -105,7 +113,13 @@ public class adminloginController {
     }
 
     @RequestMapping("/DeleteBorrw")
-    public String jumpToDeleteBorrw(@RequestParam(name = "a", required = false) int uID , @RequestParam(name = "b", required = false) int bID){
+    public String jumpToDeleteBorrw(@RequestParam(name = "a", required = false) String UID , @RequestParam(name = "b", required = false) String BID){
+        if(UID.equals("") || BID.equals("")){
+            return "errorForDeleteBorrow";
+        }
+        
+        int uID=Integer.parseInt(UID);
+        int bID=Integer.parseInt(BID);
         boolean res=dal.deleteBorrowInfo(uID, bID);
         if(res==true){
             return "DeleteBorrw";
@@ -113,7 +127,6 @@ public class adminloginController {
         else{
             return "errorDBorrow";
         }
-        
     }
 
 }
