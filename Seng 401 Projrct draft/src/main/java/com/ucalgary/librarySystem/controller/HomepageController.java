@@ -55,7 +55,7 @@ public class HomepageController {
     @RequestMapping("/search")
     public String search(Model model){
 
-        return "homePage";
+        return "GuestSearch";
     }
 
 }
