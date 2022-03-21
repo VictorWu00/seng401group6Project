@@ -1,5 +1,6 @@
 package com.ucalgary.librarySystem.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ucalgary.librarySystem.dal.StorageDAL;
@@ -21,6 +22,7 @@ public class userloginController {
     @Autowired
     private StorageDAL dal;
     private String Email;
+    private String registeredPassword;
     private int userId;
 
     @RequestMapping("/userlogin")
@@ -32,7 +34,7 @@ public class userloginController {
     public String jumpToSearchpage(){
         return "UserSearch";
     }
-
+    
     @RequestMapping("/Search")
     public String search(@RequestParam(name = "bookName", required = true) String bookName, Model model){
     
@@ -104,15 +106,28 @@ public class userloginController {
 
     @RequestMapping("/uregister")
     public String userRegister(Model model, @RequestParam(name = "ab", required = false) String Email,
-                             @RequestParam(name = "cd", required = false) String Password){
+                             @RequestParam(name = "cd", required = false) String Password, @RequestParam(name = "e", required = false) String confirmedPassword){
+
         if(Email =="" && Password ==""){
             return "index";
         }
-        else if(dal.registerUser(Email, Password) > 0){
-            return "userlogin";
+        else if(!Password.equals(confirmedPassword)){
+            return "notEqualPassword";
         }
         else{
-            return "error";
+            this.Email=Email;
+            this.registeredPassword=Password;
+            return "MoreNewUserInfo";
+        }
+    }
+
+    @RequestMapping("/signUp")
+    public String signUp(@RequestParam(name = "name", required = false) String Name,@RequestParam(name = "address", required = false) String Address,@RequestParam(name = "phone", required = false) String Phone,@RequestParam(name = "birth", required = false) String Birth){
+        if(dal.registerUser(this.Email, this.registeredPassword, Name, Address, Phone, Birth) > 0){
+            return "userPage";
+        }
+        else{
+            return "unsuccessSignUp";
         }
     }
 

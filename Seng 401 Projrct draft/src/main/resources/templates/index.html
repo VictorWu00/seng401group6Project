@@ -82,7 +82,7 @@
 
           <div class="form-floating mb-3">
           
-            <input type="password" name="password" id="floatingPassword" placeholder="Password" class="form-control">
+            <input type="password" name="password" id="floatingPassword1" placeholder="Password" class="form-control">
             <span class="invalid-feedback"></span>
             <label for="floatingPassword">Password</label>
 
@@ -90,20 +90,16 @@
           </div>
 
           <div class="form-floating mb-3">
-                <input type="password" name="confirm_password" id="floatingPassword" placeholder="Password" class="form-control">
+                <input type="password" name="confirm_password" id="floatingPassword2" placeholder="Password" class="form-control">
                 <span class="invalid-feedback"></span>
                 <label for="floatingPassword">Confirm Password</label>
           </div>
 
-          <div class="checkbox mb-3">
-            <label>
-              <input type="checkbox" value="remember-me"> Remember me
-            </label>
-          </div>
+          
 
           <div class="navbar_item">
                 <div class="buttons">
-                    <a class="buttons" onclick="location.href ='/uregister?ab=' + document.getElementById('floatingInput').value + '&cd=' +document.getElementById('floatingPassword').value;">
+                    <a class="buttons" onclick="location.href ='/uregister?ab=' + document.getElementById('floatingInput').value + '&cd=' +document.getElementById('floatingPassword1').value+ '&e=' +document.getElementById('floatingPassword2').value;">
                         <button class="w-50 btn btn-lg btn-primary" type="submit">Sign up</button>
                         <!-- <strong>Sign in></strong> -->
                     </a>

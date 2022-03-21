@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/heroes/">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap.min.css" rel="stylesheet">
+    
+</head>
+<main>
+<body>
+    <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+          <a href="./" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+            <span class="fs-4">Library Management System</span>
+          </a>
+    
+          <ul class="nav nav-pills">
+            <li class="nav-item"><a href="./homepage" class="nav-link active" aria-current="page">Home</a></li>
+          </ul>
+        </header>
+    </div>
+
+    <label style="color:black; font-size:40px; position:absolute; left:400px; top:120px">More New User Information</label></br>
+
+    <form id="form"> 
+        
+        <label style="position: absolute; left:400px; top:230px;">Name:<br></label>
+        <input type="text" id="name" name="Name" placeholder="User Name" style="position: absolute; left:400px; top:250px; width:500px; height:30px;">
+        <br>
+        <label style="position: absolute; left:400px; top:300px;">Adress:<br></label>
+        <input type="text" id="address" name="Address" placeholder="User Address" style="position: absolute; left:400px; top:320px; width:500px; height:30px;">
+        <br>
+        <label style="position: absolute; left:400px; top:370px;">Phone Number:<br></label>
+        <input type="text" id="phone" name="Phone" placeholder="Phone Number" style="position: absolute; left:400px; top:390px; width:500px; height:30px;">
+        <br>
+        <label style="position: absolute; left:400px; top:440px;">Date Of Birth:<br></label>
+        <input type="text" id="birth" name="Birth" placeholder="Date of Birth" style="position: absolute; left:400px; top:460px; width:500px; height:30px;">
+        <br>
+    </form>
+    
+    <button onclick="location.href = window.location.href = '/signUp?name=' + document.getElementById('name').value + '&address='+document.getElementById('address').value+ '&phone='+document.getElementById('phone').value+ '&birth='+document.getElementById('birth').value;" style="position: absolute; left:600px; top:530px; height:30px; background-color: rgb(224, 196, 255);">
+        <strong>Submit</strong>
+    </button>
+
+</body>
+</main>
+</html>

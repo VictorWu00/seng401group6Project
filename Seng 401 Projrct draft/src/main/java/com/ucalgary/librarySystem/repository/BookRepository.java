@@ -25,8 +25,8 @@ public class BookRepository {
     
     //needed to have the controller
     public void addBook(int isbn, String name, String description, String category, int year, String author, String publisher, String section, int location){
-        String query="insert into book (ISBN, Name, Description, Category, Year, Auhor, Publisher, SectionName, Location) values (?,?,?,?,?,?,?,?,?)";
-        jdbcTemplate.update(query,isbn,name,description,category,year,author,publisher,section,location);
+        String query="insert into book (ISBN, Name, Description, Category, Year, Auhor, Publisher, SectionName, Location, Status) values (?,?,?,?,?,?,?,?,?,?)";
+        jdbcTemplate.update(query,isbn,name,description,category,year,author,publisher,section,location,"Available");
 
     }
 
@@ -73,6 +73,13 @@ public class BookRepository {
                 BookRepository::mapAllReviews, bookID
         );
     }
+ 
+    public List<Book> getAllBooks(){
+        return jdbcTemplate.query(
+                "SELECT BookID, ISBN, Name, Description, Category, Year, Auhor, Publisher, SectionName, Location FROM book",
+                BookRepository::mapAllBooks
+        );
+    }
 
 
     private static Book mapAllBooks(ResultSet rs,int rowNum) throws SQLException{
@@ -86,7 +93,8 @@ public class BookRepository {
             rs.getString("Auhor"),
             rs.getString("Publisher"),
             rs.getString("SectionName"),
-            rs.getInt("Location")
+            rs.getInt("Location"),
+            rs.getString("Status")
         );
     }
 

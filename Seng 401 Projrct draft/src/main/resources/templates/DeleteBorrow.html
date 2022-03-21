@@ -56,14 +56,20 @@ function loadmessage() {
 }
 </script>
 
-<label style="color:black; font-size:40px; position:absolute; left:600px; top:100px">Staff Profile</label></br>
+<label style="color:black; font-size:40px; position:absolute; left:440px; top:100px">Return Book Information</label></br>
 
-<label style="color:black; font-size:25px; position:absolute; left:550px; top:200px">Admin ID:<label th:text="${adminID}" style="position:absolute; left:200px; top:0px"></label></label></br>
-    <label style="color:black; font-size:25px; position:absolute; left:550px; top:250px">Admin Name:<label th:text="${adminName}" style="position:absolute; left:200px; top:0px"></label></label></br>
-    <label style="color:black; font-size:25px; position:absolute; left:550px; top:300px">Address:<label th:text="${adminAddress}" style="position:absolute; left:200px; top:0px; width:1000px"></label></label></br>
-    <label style="color:black; font-size:25px; position:absolute; left:550px; top:350px">Phone-Number:<label th:text="${adminPhone}" style="position:absolute; left:200px; top:0px; width:1000px" ></label></label></br>
-    <label style="color:black; font-size:25px; position:absolute; left:550px; top:400px">Date Of Birth:<label th:text="${adminBirth}" style="position:absolute; left:200px; top:0px"></label></label></br>
-    <label style="color:black; font-size:25px; position:absolute; left:550px; top:450px">Email:<label th:text="${adminEmail}" style="position:absolute; left:200px; top:0px"></label></label></br>
-    <label style="color:black; font-size:25px; position:absolute; left:550px; top:500px">Library ID:<label th:text="${adminLibraryId}" style="position:absolute; left:200px; top:0px"></label></label></br>
+<form id="form"> 
+  <label style="position: absolute; left:400px; top:200px;">User ID:<br></label>
+  <input type="text" id="uID" name="uID" placeholder="Enter the User's ID" style="position: absolute; left:400px; top:220px; width:500px; height:30px;">
+  <br>  
+  <label style="position: absolute; left:400px; top:270px;">Book ID:<br></label>
+  <input type="text" id="bID" name="bID" placeholder="Enter the Book's ID" style="position: absolute; left:400px; top:290px; width:500px; height:30px;">
+  <br>
+</form>
+
+<button onclick="location.href = window.location.href = '/DeleteBorrw?a=' + document.getElementById('uID').value + '&b='+document.getElementById('bID').value;" style="position: absolute; left:600px; top:360px; height:30px; background-color: bisque;">
+  <strong>Submit</strong>
+</button>
+
+
 </html>
-

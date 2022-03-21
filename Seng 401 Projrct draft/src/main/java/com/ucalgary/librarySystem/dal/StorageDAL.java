@@ -17,6 +17,7 @@ import com.ucalgary.librarySystem.model.User;
 import com.ucalgary.librarySystem.repository.AdminRepository;
 import com.ucalgary.librarySystem.repository.BookRepository;
 import com.ucalgary.librarySystem.repository.UserRepository;
+import com.ucalgary.librarySystem.repository.BorrowRepository;
 
 /**
  * Provides access to stored data, whether through a database or a file stored on the device.
@@ -33,6 +34,9 @@ public class StorageDAL {
 
     @Autowired
     private BookRepository bookRepository;
+
+    @Autowired
+    private BorrowRepository borrowRepository;
 
     public boolean isAdmin(String username, String password){
         boolean auth = adminRepository.isAdmin(username,password);
@@ -60,8 +64,8 @@ public class StorageDAL {
         return adminRepository.getAdminByEmail(Email);
     }
     
-    public int registerUser(String Email, String Password){
-        return userRepository.registerNewUser(Email, Password);
+    public int registerUser(String Email, String Password, String Name, String Address, String Phone, String Birth){
+        return userRepository.registerNewUser(Email, Password, Name, Address, Phone, Birth);
     }
 
     public List<Book> searchByBookName(String bookName){
@@ -89,6 +93,8 @@ public class StorageDAL {
         return  bookRepository.searchByBookReview(bookId);
     }
     
-
+    public boolean deleteBorrowInfo(int uID, int bID){
+        return borrowRepository.deleteBorrowInfo(uID, bID);
+    }
 }
 

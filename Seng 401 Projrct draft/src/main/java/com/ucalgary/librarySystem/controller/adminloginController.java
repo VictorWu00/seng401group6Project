@@ -98,7 +98,23 @@ public class adminloginController {
         dal.modifyUser(name, address, phone, birth, balance);
         return "ModifyU";
     }
+    
+    @RequestMapping("/DeleteBorrow")
+    public String jumpToDeleteBorrow(){
+        return "DeleteBorrow";
+    }
 
+    @RequestMapping("/DeleteBorrw")
+    public String jumpToDeleteBorrw(@RequestParam(name = "a", required = false) int uID , @RequestParam(name = "b", required = false) int bID){
+        boolean res=dal.deleteBorrowInfo(uID, bID);
+        if(res==true){
+            return "DeleteBorrw";
+        }
+        else{
+            return "errorDBorrow";
+        }
+        
+    }
 
 }
 

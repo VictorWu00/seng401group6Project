@@ -97,16 +97,9 @@ public class UserRepository {
         return res;
     }
 
-    //success return value > 0, else return 0
-    public int addNewUser(String Name, String Address, String PhoneNumber, String DateOfBirth, String Email, String Password){
-        String sql = "INSERT INTO user (Name,Address,PhoneNumber,DateOfBirth,Email,Password,Balance) values(?,?,?,?,?,0)";
-        int res = this.jdbcTemplate.update(sql, Name, Address, PhoneNumber, DateOfBirth, Email, Password);
-        return res;
-    }
-
-    public int registerNewUser(String Email, String Password){
-        String sql = "INSERT INTO user (Email, Password) values (?, ?)";
-        int res = this.jdbcTemplate.update(sql, Email, Password);
+    public int registerNewUser(String Email, String Password, String Name, String Address, String Phone, String Birth){
+        String sql = "INSERT INTO user (Name, Address, PhoneNumber, DateOfBirth, Email, Password, Balance) values (?,?,?,?,?,?,?)";
+        int res = this.jdbcTemplate.update(sql, Name, Address, Phone, Birth, Email, Password, 0);
         return res;
     }
 
