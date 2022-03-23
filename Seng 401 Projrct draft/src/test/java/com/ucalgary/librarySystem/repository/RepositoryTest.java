@@ -98,6 +98,18 @@ class RepositoryTest {
     }
 
     @Test
+    public void registerNewUserTest() {
+
+        when(userRepository.registerNewUser("testonly@gmail.com", "401", "TestOnly", "1234 3rd st, Calgary",
+                "587-666-5555", "2003-03-03")).thenReturn(1);
+
+        assertEquals(1, dal.registerUser("testonly@gmail.com", "401", "TestOnly", "1234 3rd st, Calgary",
+                "587-666-5555", "2003-03-03"));
+        verify(userRepository, times(1)).registerNewUser("testonly@gmail.com", "401", "TestOnly",
+                "1234 3rd st, Calgary", "587-666-5555", "2003-03-03");
+    }
+
+    @Test
     public void searchByBookNameTGest() {
 
         List<Book> book = new ArrayList<Book>();
@@ -110,4 +122,75 @@ class RepositoryTest {
         verify(bookRepository, times(1)).searchByBookName("FactoryL");
     }
 
+    @Test
+    public void searchByBookAuthorTest() {
+
+        List<Author> author = new ArrayList<Author>();
+        author.add(new Author("James C", "9981 University Dr, Calgary", "587-6666-5442"));
+
+        when(bookRepository.searchByBookAuthor("FactoryL")).thenReturn(author);
+
+        assertEquals(author.get(0).getName(), dal.searchByBookAuthor("FactoryL").get(0).getName());
+        verify(bookRepository, times(1)).searchByBookAuthor("FactoryL");
+    }
+
+    @Test
+    public void searchByBookPublisherTest() {
+
+        List<Publisher> publisher = new ArrayList<Publisher>();
+        publisher.add(new Publisher("CalgBOOK House", "1 centre st, Calgary", "587-888-8888"));
+
+        when(bookRepository.searchByBookPublisher("FactoryL")).thenReturn(publisher);
+
+        assertEquals(publisher.get(0).getName(), dal.searchByBookPublisher("FactoryL").get(0).getName());
+        verify(bookRepository, times(1)).searchByBookPublisher("FactoryL");
+    }
+
+    @Test
+    public void searchByBookReviewTest() {
+
+        List<Review> review = new ArrayList<Review>();
+        review.add(new Review(2, "Magic Rings", "Just so-so", "2 stars", "2022-03-15"));
+
+        when(bookRepository.searchByBookReview(2)).thenReturn(review);
+
+        assertEquals(review.get(0).getDescription(), dal.searchByBookReview(2).get(0).getDescription());
+        verify(bookRepository, times(1)).searchByBookReview(2);
+    }
+
+    @Test
+    public void searchRentedBookTrueTest() {
+
+        when(bookRepository.searchRentedBook(2)).thenReturn(true);
+
+        assertTrue(dal.searchRentedBook(2));
+        verify(bookRepository, times(1)).searchRentedBook(2);
+    }
+
+    @Test
+    public void searchRentedBookFalseTest() {
+
+        when(bookRepository.searchRentedBook(77)).thenReturn(false);
+
+        assertFalse(dal.searchRentedBook(77));
+        verify(bookRepository, times(1)).searchRentedBook(77);
+    }
+
+    @Test
+    public void deleteBorrowInfoTrueTest() {
+
+        when(borrowRepository.deleteBorrowInfo(232326, 3)).thenReturn(true);
+
+        assertTrue(dal.deleteBorrowInfo(232326, 3));
+        verify(borrowRepository, times(1)).deleteBorrowInfo(232326, 3);
+    }
+
+    @Test
+    public void deleteBorrowInfoFalseTest() {
+
+        when(borrowRepository.deleteBorrowInfo(239999, 88)).thenReturn(false);
+
+        assertFalse(dal.deleteBorrowInfo(239999, 88));
+        verify(borrowRepository, times(1)).deleteBorrowInfo(239999, 88);
+    }
 }
