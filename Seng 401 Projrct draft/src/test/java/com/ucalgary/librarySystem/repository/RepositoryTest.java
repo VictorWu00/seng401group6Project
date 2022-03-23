@@ -193,4 +193,96 @@ class RepositoryTest {
         assertFalse(dal.deleteBorrowInfo(239999, 88));
         verify(borrowRepository, times(1)).deleteBorrowInfo(239999, 88);
     }
+    
+    
+    
+    
+    
+    
+    //need to be tested
+    
+    @Test
+    public void insertRentedBookTest() {
+        when(bookRepository.insertRentedbook(2, 232324, Date.valueOf("2022-03-01"), Date.valueOf("2022-03-31"))).thenReturn(true);
+        assertTrue(dal.insertRentedBook(2, 232324, Date.valueOf("2022-03-01"), Date.valueOf("2022-03-31")));
+        verify(bookRepository, times(1)).insertRentedbook(2, 232324, Date.valueOf("2022-03-01"), Date.valueOf("2022-03-31"));
+    }
+
+    @Test
+    public void checkForValidRentedBookTest() {
+        when(bookRepository.checkForRentedBook(232324, 2)).thenReturn(true);
+        assertTrue(dal.checkForRentedBook(232324,2));
+        verify(bookRepository, times(1)).checkForRentedBook(232324,2);
+    }
+
+    @Test
+    public void checkForInvalidRentedBookTest() {
+        when(bookRepository.checkForRentedBook(232320, 2)).thenReturn(false);
+        assertTrue(dal.checkForRentedBook(232320,2));
+        verify(bookRepository, times(1)).checkForRentedBook(232320,2);
+    }
+
+    @Test
+    public void searchBorrowBooksTest() {
+        List <Borrow> borrows = new ArrayList<Borrow>();
+        borrows.add(new Borrow(2, "Four Kindoms", "2022-03-01", "2022-03-31"));
+        borrows.add(new Borrow(1, "Magic Rings", "2022-03-01", "2022-03-31"));
+        when(bookRepository.searchBorrowBooks(232324)).thenReturn(borrows);
+        assertEquals(borrows, dal.searchBorrowBooks(232324));
+        verify(bookRepository, times(1)).searchBorrowBooks(232324);
+    }
+
+    @Test
+    public void searchReviewByUserTest() {
+        List <Review> reviews = new ArrayList<Review>();
+        reviews.add(new Review(2, "Four Kindoms", "Just so-so", "2 stars", "2022-03-15"));
+        reviews.add(new Review(1, "Magic Rings", "good book", "3 stars", "2022-03-14"));
+        when(bookRepository.searchReviewByUser(232324)).thenReturn(reviews);
+        assertEquals(reviews, dal.searchReviewByUser(232324));
+        verify(bookRepository, times(1)).searchReviewByUser(232324);
+    }
+
+
+    @Test
+    public void checkValidUserReviewTest() {
+        when(bookRepository.checkUserReview(232324, 2)).thenReturn(true);
+        assertTrue(dal.checkUserReview(232324,2));
+        verify(bookRepository, times(1)).checkUserReview(232324,2);
+    }
+
+    @Test
+    public void checkInvalidUserReviewTest() {
+        when(bookRepository.checkUserReview(232327, 6)).thenReturn(false);
+        assertFalse(dal.checkUserReview(232327,2));
+        verify(bookRepository, times(1)).checkUserReview(232327,6);
+    }
+
+    @Test
+    public void writeReview() {
+        when(bookRepository.writeReview(232324, 5, "good story", "4 stars", Date.valueOf("2022-02-22"))).thenReturn(true);
+        assertTrue(dal.writeReview(232324, 5, "good story", "4", Date.valueOf("2022-2-22")));
+        verify(bookRepository, times(1)).writeReview(232324, 5, "good story", "4 stars", Date.valueOf("2022-02-22"));
+    }
+
+    @Test
+    public void hasNotReviewedYetTest() {
+        when(bookRepository.HasNotReviewedYet(232324, 2)).thenReturn(true);
+        assertTrue(dal.HasNotReviewedYet(232324,2));
+        verify(bookRepository, times(1)).HasNotReviewedYet(232324,2);
+    }
+
+
+
+    @Test
+    public void searchByValidBookIDTest() {
+        List <Book> books = new ArrayList <Book> ();
+        books.add(new Book(9, 888888, "The Little Prince", "A real warm story", "child's fairy tale", 1943, "Antoine de Saint-Exupéry", "Reynal & Hitchcock",
+                "C", 1, "Avaiable"));
+        books.add(new Book(3, 77777, "FactoryL", "A real player story", "Biography", 2019, "James C", "CalgBOOK House",
+                "C", 1, "Avaiable"));
+        when(bookRepository.searchByBookID(9)).thenReturn(books);
+
+        assertEquals(books.get(0).getName(), dal.searchByBookID(9).get(0).getName());
+        verify(bookRepository, times(1)).searchByBookID(9);
+    }
 }
