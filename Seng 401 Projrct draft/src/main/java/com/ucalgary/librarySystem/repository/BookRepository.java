@@ -1,27 +1,20 @@
 package com.ucalgary.librarySystem.repository;
 
 
+import com.ucalgary.librarySystem.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Description;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.sql.Types;
-import com.ucalgary.librarySystem.model.Book;
-import com.ucalgary.librarySystem.model.Borrow;
-import com.ucalgary.librarySystem.model.Publisher;
-import com.ucalgary.librarySystem.model.Review;
-import com.ucalgary.librarySystem.model.Admin;
-import com.ucalgary.librarySystem.model.Author;
 
 @Repository
 public class BookRepository {
+    
     @Autowired
     private JdbcTemplate jdbcTemplate;
     
