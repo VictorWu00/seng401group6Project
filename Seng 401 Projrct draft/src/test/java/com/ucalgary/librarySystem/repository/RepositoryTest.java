@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -253,14 +254,14 @@ class RepositoryTest {
     @Test
     public void checkInvalidUserReviewTest() {
         when(bookRepository.checkUserReview(232327, 6)).thenReturn(false);
-        assertFalse(dal.checkUserReview(232327,2));
+        assertTrue(dal.checkUserReview(232327,6));
         verify(bookRepository, times(1)).checkUserReview(232327,6);
     }
 
     @Test
     public void writeReview() {
         when(bookRepository.writeReview(232324, 5, "good story", "4 stars", Date.valueOf("2022-02-22"))).thenReturn(true);
-        assertTrue(dal.writeReview(232324, 5, "good story", "4", Date.valueOf("2022-2-22")));
+        assertTrue(dal.writeReview(232324, 5, "good story", "4 stars", Date.valueOf("2022-02-22")));
         verify(bookRepository, times(1)).writeReview(232324, 5, "good story", "4 stars", Date.valueOf("2022-02-22"));
     }
 
