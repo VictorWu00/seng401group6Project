@@ -236,7 +236,7 @@ public class BookRepository {
 
     public List<Book> searchByBookID(int bookID){
         return jdbcTemplate.query(
-            "SELECT BookID, ISBN, Name, Description, Category, Year, Auhor, Publisher, SectionName, Location FROM book WHERE BookID = ?",
+            "SELECT BookID, ISBN, Name, Description, Category, Year, Auhor, Publisher, SectionName, Location, Status FROM book WHERE BookID = ?",
             BookRepository::mapAllBooks,
             bookID
         );
