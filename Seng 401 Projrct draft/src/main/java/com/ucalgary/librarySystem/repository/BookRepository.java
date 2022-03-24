@@ -102,7 +102,7 @@ public class BookRepository {
 
     public List<Book> searchByAuthor(String author){
         return jdbcTemplate.query(
-            "SELECT BookID, ISBN, Name, Description, Category, Year, Auhor, Publisher, SectionName, Location FROM book WHERE Author = ?",
+            "SELECT BookID, ISBN, Name, Description, Category, Year, Auhor, Publisher, SectionName, Location, Status FROM book WHERE Author = ?",
                 BookRepository::mapAllBooks, author
         );
     }
@@ -116,7 +116,7 @@ public class BookRepository {
  
     public List<Book> getAllBooks(){
         return jdbcTemplate.query(
-                "SELECT BookID, ISBN, Name, Description, Category, Year, Auhor, Publisher, SectionName, Location FROM book",
+                "SELECT BookID, ISBN, Name, Description, Category, Year, Auhor, Publisher, SectionName, Location, Status FROM book",
                 BookRepository::mapAllBooks
         );
     }
@@ -236,7 +236,7 @@ public class BookRepository {
 
     public List<Book> searchByBookID(int bookID){
         return jdbcTemplate.query(
-            "SELECT BookID, ISBN, Name, Description, Category, Year, Auhor, Publisher, SectionName, Location FROM book WHERE BookID = ?",
+            "SELECT BookID, ISBN, Name, Description, Category, Year, Auhor, Publisher, SectionName, Location, Status FROM book WHERE BookID = ?",
             BookRepository::mapAllBooks,
             bookID
         );
