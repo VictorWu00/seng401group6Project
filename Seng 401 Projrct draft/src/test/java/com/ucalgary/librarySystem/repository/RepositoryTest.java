@@ -219,7 +219,7 @@ class RepositoryTest {
     @Test
     public void checkForInvalidRentedBookTest() {
         when(bookRepository.checkForRentedBook(232320, 2)).thenReturn(false);
-        assertTrue(dal.checkForRentedBook(232320,2));
+        assertFalse(dal.checkForRentedBook(232320,2));
         verify(bookRepository, times(1)).checkForRentedBook(232320,2);
     }
 
@@ -254,7 +254,7 @@ class RepositoryTest {
     @Test
     public void checkInvalidUserReviewTest() {
         when(bookRepository.checkUserReview(232327, 6)).thenReturn(false);
-        assertTrue(dal.checkUserReview(232327,6));
+        assertFalse(dal.checkUserReview(232327,6));
         verify(bookRepository, times(1)).checkUserReview(232327,6);
     }
 
