@@ -54,6 +54,27 @@ function loadmessage() {
     alert('Logout Successful');
 }
 </script>
+
+<script>
+  function loadRate(){
+    if(document.getElementById("1").checked){
+      return "1";
+    }
+    else if(document.getElementById("2").checked){
+      return "2";
+    }
+    else if(document.getElementById("3").checked){
+      return "3";
+    }
+    else if(document.getElementById("4").checked){
+      return "4";
+    }
+    else if(document.getElementById("5").checked){
+      return "5";
+    }
+  }
+</script>
+
 <center>
 <h2 style="position:relative; left:0px; top:50px; font-size:30px;">Review Form</h2>
 <p style="position:relative; left:-30px; top:70px;"><span class="error">* required field</span></p>
@@ -70,15 +91,15 @@ function loadmessage() {
   <center>
   <br><br>
   <label style="position:relative; left:-50px; top:150px;">*Rating (in stars):</label>
-  <input style="position:relative; left:-50px; top:150px;" type="radio" id="rating" name="rating" value="1">
+  <input style="position:relative; left:-50px; top:150px;" type="radio" id="1" name="rating" value="1">
   <label style="position:relative; left:-65px; top:170px;">1</label>
-  <input style="position:relative; left:0px; top:150px;" type="radio" id="rating" name="rating" value="2">
+  <input style="position:relative; left:0px; top:150px;" type="radio" id="2" name="rating" value="2">
   <label style="position:relative; left:-15px; top:170px;">2</label>
-  <input style="position:relative; left:50px; top:150px;" type="radio" id="rating" name="rating" value="3">
+  <input style="position:relative; left:50px; top:150px;" type="radio" id="3" name="rating" value="3">
   <label style="position:relative; left:35px; top:170px;">3</label>
-  <input style="position:relative; left:100px; top:150px;" type="radio" id="rating" name="rating" value="4">
+  <input style="position:relative; left:100px; top:150px;" type="radio" id="4" name="rating" value="4">
   <label style="position:relative; left:85px; top:170px;">4</label>
-  <input style="position:relative; left:150px; top:150px;" type="radio" id="rating" name="rating" value="5">
+  <input style="position:relative; left:150px; top:150px;" type="radio" id="5" name="rating" value="5">
   <label style="position:relative; left:135px; top:170px;">5</label>
   <br><br>
   </center>
@@ -88,7 +109,7 @@ function loadmessage() {
   onclick="location.href='/postReview?book='+documents.getElementById('book').value +
   '&description='+documents.getElementById('description').value + '&rating='+docuemnts.getElementById('rating').value";>Submit</button>  -->
   <button id="Mbutton" style="position:relative; left:0px; top:200px; padding:10px 20px;" name="submit" onclick="location.href ='/postReview?book='+document.getElementById('book').value +
-  '&rating='+document.getElementById('rating').value + '&description='+document.getElementById('description').value;">Submit</button>
+  '&rating='+ loadRate() + '&description='+document.getElementById('description').value;">Submit</button>
   </center>
 
 
