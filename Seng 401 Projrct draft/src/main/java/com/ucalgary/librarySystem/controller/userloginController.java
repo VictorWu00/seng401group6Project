@@ -1,27 +1,17 @@
 package com.ucalgary.librarySystem.controller;
 
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-
 import com.ucalgary.librarySystem.dal.StorageDAL;
-import com.ucalgary.librarySystem.model.Author;
-import com.ucalgary.librarySystem.model.Book;
-import com.ucalgary.librarySystem.model.Borrow;
-import com.ucalgary.librarySystem.model.Publisher;
-import com.ucalgary.librarySystem.model.Review;
-import com.ucalgary.librarySystem.model.User;
-import com.ucalgary.librarySystem.repository.AdminRepository;
+import com.ucalgary.librarySystem.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import ch.qos.logback.core.joran.conditional.ElseAction;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
 
 
 @Controller
@@ -282,8 +272,15 @@ public class userloginController {
     }
 
     @RequestMapping("/signUp")
-    public String signUp(@RequestParam(name = "name", required = false) String Name,@RequestParam(name = "address", required = false) String Address,@RequestParam(name = "phone", required = false) String Phone,@RequestParam(name = "birth", required = false) String Birth){
-        if(dal.registerUser(this.Email, this.registeredPassword, Name, Address, Phone, Birth) > 0){
+    public String signUp(@RequestParam(name = "name", required = false) String Name,@RequestParam(name = "address", required = false) String Address,@RequestParam(name = "phone", required = false) String Phone,@RequestParam(name = "birth", required = false) Date Birth){
+        /*for(int i=0;i<Phone.length();i++){
+            if(Phone.indexOf(i))
+        }*/
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String birth = sdf.format(Birth);
+
+        if(dal.registerUser(this.Email, this.registeredPassword, Name, Address, Phone, birth) > 0){
             return "userPage";
         }
         else{
