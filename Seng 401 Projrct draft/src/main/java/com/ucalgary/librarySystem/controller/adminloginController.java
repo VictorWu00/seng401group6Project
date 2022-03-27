@@ -1,16 +1,10 @@
 package com.ucalgary.librarySystem.controller;
 
-import java.time.Year;
-import java.util.List;
-
 import com.ucalgary.librarySystem.dal.StorageDAL;
-import com.ucalgary.librarySystem.repository.AdminRepository;
-
+import com.ucalgary.librarySystem.model.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import com.ucalgary.librarySystem.model.Admin;
-import com.ucalgary.librarySystem.model.Book;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -65,14 +59,14 @@ public class adminloginController {
     }
 
     @RequestMapping("/AddB")
-    public String jumpToAdd(Model model, @RequestParam(name = "a", required = false) String Isbn, @RequestParam(name = "b", required = false) String bname, @RequestParam(name = "c", required = false) String category, @RequestParam(name = "d", required = false) String Year, @RequestParam(name = "e", required = false) String author, @RequestParam(name = "f", required = false) String publisher, @RequestParam(name = "g", required = false) String section, @RequestParam(name = "h", required = false) int location, @RequestParam(name = "i", required = false) String description){
-        if(Isbn.equals("") || bname.equals("") || category.equals("") || Year.equals("") || author.equals("") || publisher.equals("") || section.equals("") || location==0 || description.equals("")){
+    public String jumpToAdd(Model model, @RequestParam(name = "a", required = false) String Isbn, @RequestParam(name = "b", required = false) String bname, @RequestParam(name = "c", required = false) String category, @RequestParam(name = "d", required = false) String Year, @RequestParam(name = "e", required = false) String author, @RequestParam(name = "f", required = false) String publisher, @RequestParam(name = "g", required = false) String section, @RequestParam(name = "i", required = false) String description){
+        if(Isbn.equals("") || bname.equals("") || category.equals("") || Year.equals("") || author.equals("") || publisher.equals("") || section.equals("")  || description.equals("")){
             return "noInputForAddB";
         }
         
         int isbn=Integer.parseInt(Isbn);
         int year=Integer.parseInt(Year);
-        dal.addBook(isbn, bname, description, category, year, author, publisher, section, location);
+        dal.addBook(isbn, bname, description, category, year, author, publisher, section);
         return "AddB";
     }
 
@@ -96,14 +90,18 @@ public class adminloginController {
     }
 
     @RequestMapping("/ModifyU")
-    public String jumpToModifyU(Model model, @RequestParam(name = "a", required = false) String address, @RequestParam(name = "b", required = false) String phone, @RequestParam(name = "c", required = false) String birth, @RequestParam(name = "d", required = false) String Balance, @RequestParam(name = "e", required = false) String name){
-        
-        if(address.equals("") || phone.equals("") || birth.equals("") || Balance.equals("") || name.equals(""))
+    public String jumpToModifyU(Model model, @RequestParam(name = "a", required = false) String address, @RequestParam(name = "b", required = false) String phone, @RequestParam(name = "d", required = false) String Balance, @RequestParam(name = "e", required = false) String name){
+        try{
+            double i=Double.parseDouble(phone);
+        }catch(NumberFormatException e){
+            return "WrongPhoneNumberFormat";
+        }
+        if(address.equals("") || phone.equals("") || Balance.equals("") || name.equals(""))
         {
             return "errorForModifyU";
         }
         double balance=Double.parseDouble(Balance);;
-        dal.modifyUser(name, address, phone, birth, balance);
+        dal.modifyUser(name, address, phone, balance);
         return "ModifyU";
     }
     

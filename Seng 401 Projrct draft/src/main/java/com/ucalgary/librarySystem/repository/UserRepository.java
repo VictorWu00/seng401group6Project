@@ -107,7 +107,7 @@ public class UserRepository {
         return res;
     }
 
-    public void modifyUser(String name, String address, String phone, String birth, double balance){
+    public void modifyUser(String name, String address, String phone, double balance){
         String query;
 
         if(!address.equals("*")){
@@ -118,13 +118,21 @@ public class UserRepository {
             query="UPDATE user SET PhoneNumber=? WHERE Name=?";
             this.jdbcTemplate.update(query, phone, name);
         }
-        if(!birth.equals("*")){
-            query="UPDATE user SET DateOfBirth=? WHERE Name=?";
-            this.jdbcTemplate.update(query, birth, name);
-        }
         if(balance!=-1.0){
             query="UPDATE user SET Balance=? WHERE Name=?";
             this.jdbcTemplate.update(query, balance, name);
+        }
+    }
+
+    public boolean checkEmailDuplication(String Email){
+        String sql = "SELECT COUNT(*) FROM user WHERE Email = ?";
+        int count;
+        try{
+            count = this.jdbcTemplate.queryForObject(sql, Integer.class, Email);
+            if (count > 0) return true;
+            return false;
+        }catch (EmptyResultDataAccessException e){
+            return false;
         }
     }
 

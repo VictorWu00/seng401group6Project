@@ -120,20 +120,14 @@ function loadmessage() {
     <option value="K">K</option>
   </select>
   <br>
-  <label style="position: absolute; left:400px; top:590px;">Location:<br></label>
-  <select name="Location" id="location" style="position: absolute; left:400px; top:615px; width:500px; height:30px;">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-  </select>
-  <br>
-  <label style="position: absolute; left:400px; top:660px;">Description:<br></label>
-  <textarea cols="50" rows="10" type="text" id="description" name="Description" style="position: absolute; left:400px; top:680px; width:500px;">Please Enter the Description here...</textarea>
+
+  <label style="position: absolute; left:400px; top:590px;">Description:<br></label>
+  <textarea cols="50" rows="10" type="text" id="description" name="Description" style="position: absolute; left:400px; top:610px; width:500px;">Please Enter the Description here...</textarea>
 </form>
 
 
 
-<button onclick="location.href = window.location.href = '/AddB?a=' + document.getElementById('isbn').value + '&b='+document.getElementById('bName').value + '&c='+document.getElementById('category').value + '&d='+document.getElementById('year').value + '&e='+document.getElementById('author').value + '&f='+document.getElementById('publisher').value + '&g='+document.getElementById('section').value + '&h='+document.getElementById('location').value + '&i='+document.getElementById('description').value;" style="position: absolute; left:600px; top:980px; height:30px; background-color: bisque;">
+<button onclick="location.href = window.location.href = '/AddB?a=' + document.getElementById('isbn').value + '&b='+document.getElementById('bName').value + '&c='+document.getElementById('category').value + '&d='+document.getElementById('year').value + '&e='+document.getElementById('author').value + '&f='+document.getElementById('publisher').value + '&g='+document.getElementById('section').value + '&i='+document.getElementById('description').value;" style="position: absolute; left:600px; top:900px; height:30px; background-color: bisque;">
   <strong>Confirm</strong>
 </button>
 

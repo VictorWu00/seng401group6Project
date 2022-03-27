@@ -7,8 +7,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
-
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,9 +19,9 @@ public class BookRepository {
     private JdbcTemplate jdbcTemplate;
     
     //needed to have the controller
-    public void addBook(int isbn, String name, String description, String category, int year, String author, String publisher, String section, int location){
+    public void addBook(int isbn, String name, String description, String category, int year, String author, String publisher, String section){
         String query="insert into book (ISBN, Name, Description, Category, Year, Auhor, Publisher, SectionName, Location, Status) values (?,?,?,?,?,?,?,?,?,?)";
-        jdbcTemplate.update(query,isbn,name,description,category,year,author,publisher,section,location,"Available");
+        jdbcTemplate.update(query,isbn,name,description,category,year,author,publisher,section,1,"Available");
 
     }
 

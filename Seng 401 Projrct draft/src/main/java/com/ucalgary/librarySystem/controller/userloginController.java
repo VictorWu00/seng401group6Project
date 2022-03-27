@@ -264,6 +264,9 @@ public class userloginController {
         else if(!Password.equals(confirmedPassword)){
             return "notEqualPassword";
         }
+        else if(dal.checkEmailDuplication(Email)){
+            return "EmailAlreadyExisted";
+        }
         else{
             this.Email=Email;
             this.registeredPassword=Password;
@@ -273,9 +276,17 @@ public class userloginController {
 
     @RequestMapping("/signUp")
     public String signUp(@RequestParam(name = "name", required = false) String Name,@RequestParam(name = "address", required = false) String Address,@RequestParam(name = "phone", required = false) String Phone,@RequestParam(name = "birth", required = false) Date Birth){
-        /*for(int i=0;i<Phone.length();i++){
-            if(Phone.indexOf(i))
-        }*/
+        Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
+        int state=Birth.compareTo(timeNow);
+        if(state>0){
+            return "unsuccessSignUp";
+        }
+
+        try{
+            double i=Double.parseDouble(Phone);
+        }catch(NumberFormatException e){
+            return "unsuccessSignUp";
+        }
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String birth = sdf.format(Birth);

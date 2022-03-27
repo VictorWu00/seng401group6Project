@@ -41,8 +41,8 @@ public class StorageDAL {
         return auth;
     }
 
-    public void addBook(int isbn, String name, String description, String category, int year, String author, String publisher, String section, int location){
-        bookRepository.addBook(isbn, name, description, category, year, author, publisher, section, location);
+    public void addBook(int isbn, String name, String description, String category, int year, String author, String publisher, String section){
+        bookRepository.addBook(isbn, name, description, category, year, author, publisher, section);
     }
 
     public void deleteBook(String name, String author){
@@ -67,8 +67,8 @@ public class StorageDAL {
         .collect(Collectors.toList());
     }
 
-    public void modifyUser(String name, String address, String phone, String birth, double balance){
-        userRepository.modifyUser(name, address, phone, birth, balance);
+    public void modifyUser(String name, String address, String phone, double balance){
+        userRepository.modifyUser(name, address, phone, balance);
     }
 
     public List<Author> searchByBookAuthor(String bookName)
@@ -141,6 +141,10 @@ public class StorageDAL {
     public boolean HasNotReviewedYet(int userID, int bookID){
         return bookRepository.HasNotReviewedYet(userID, bookID);
 
+    }
+
+    public boolean checkEmailDuplication(String Email){
+        return userRepository.checkEmailDuplication(Email);
     }
 
     /*public List<Book> searchguestBook(String bookName)
