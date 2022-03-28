@@ -76,7 +76,6 @@ function loadmessage() {
              <th style="color:black;font-size:20px;border:  solid;">Book's Author</th>
              <th style="color:black;font-size:20px;border: solid;">Book's Publisher</th>
              <th style="color:black;font-size:20px;border:  solid;">Library's Section Name</th>
-             <th style="color:black;font-size:20px;border: solid;">Library Location</th>
             </tr>
 
         <tr th:each="book:${books}">
@@ -88,7 +87,6 @@ function loadmessage() {
             <td style="color:black;font-size:15px; text-align: center; border: solid;"><label th:text="${book.Author}" ></label></td>
             <td style="width: 150px; color:black;font-size:15px; text-align: center; border: solid;"><label th:text="${book.Publisher}" ></label></td>
             <td style="width: 150px;color:black;font-size:15px; text-align: center; border:  solid;"><label th:text="${book.SectionName}" ></label></td>
-            <td style="width: 150px;color:black;font-size:15px; text-align: center; border:  solid;"><label th:text="${book.location}" ></label></td>
         </tr>
       
 </tr>
