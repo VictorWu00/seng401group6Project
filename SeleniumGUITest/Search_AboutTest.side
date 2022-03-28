@@ -1,7 +1,7 @@
 {
   "id": "f06b6fdb-11d5-4fe9-b433-6aa5bed11b9e",
   "version": "2.0",
-  "name": "SENG401_Search&amp;AboutTest",
+  "name": "Search_AboutTest",
   "url": "http://localhost:12345",
   "tests": [{
     "id": "50c77c1e-ad31-401a-b1c4-357ccb24d01d",
