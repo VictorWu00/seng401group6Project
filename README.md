@@ -13,7 +13,7 @@ Guest can search any book from the library homepage.
 
 # Installation
 1. Clone the repository from github using the following command:
-  https://github.com/VictorWu00/seng401group6Project.git
+  git clone https://github.com/VictorWu00/seng401group6Project.git
 
 # How to Run:
 1. Open the Seng_401_Project on the IDE (Visual Studio or IntelliJ).
