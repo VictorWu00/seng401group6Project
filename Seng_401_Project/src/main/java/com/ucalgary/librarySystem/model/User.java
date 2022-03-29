@@ -83,4 +83,8 @@ public class User {
     public double getUserBalance(){
         return this.Balance;
     }
+
+    public String getPassword(){
+        return this.Password;
+    }
 }
