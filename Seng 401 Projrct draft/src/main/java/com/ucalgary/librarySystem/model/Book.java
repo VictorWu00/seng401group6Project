@@ -1,6 +1,5 @@
 package com.ucalgary.librarySystem.model;
 
-import java.util.function.BiConsumer;
 
 public class Book {
     private int BookID;

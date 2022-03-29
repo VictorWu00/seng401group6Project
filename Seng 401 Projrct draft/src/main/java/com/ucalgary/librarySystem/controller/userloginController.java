@@ -283,7 +283,7 @@ public class userloginController {
         }
 
         try{
-            double i=Double.parseDouble(Phone);
+            Double.parseDouble(Phone);
         }catch(NumberFormatException e){
             return "unsuccessSignUp";
         }

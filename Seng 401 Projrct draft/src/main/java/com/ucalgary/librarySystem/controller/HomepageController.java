@@ -6,14 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.w3c.dom.html.HTMLCollection;
 
 import java.util.List;
 
 import com.ucalgary.librarySystem.dal.StorageDAL;
 import com.ucalgary.librarySystem.model.Book;
-import com.ucalgary.librarySystem.model.User;
 
 @Controller
 @RequestMapping("/")

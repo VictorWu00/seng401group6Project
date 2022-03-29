@@ -1,7 +1,6 @@
 package com.ucalgary.librarySystem.model;
 
 
-import javax.management.loading.PrivateClassLoader;
 
 public class Borrow {
     private int UserID;

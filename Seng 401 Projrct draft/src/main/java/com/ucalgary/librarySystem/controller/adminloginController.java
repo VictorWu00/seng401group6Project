@@ -94,7 +94,7 @@ public class adminloginController {
         if(!phone.equals("*"))
         {
             try {
-                double i = Double.parseDouble(phone);
+                Double.parseDouble(phone);
             } catch (NumberFormatException e) {
                 return "WrongPhoneNumberFormat";
             }
