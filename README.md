@@ -20,7 +20,7 @@ Guest can search any book from the library homepage.
 2. Navigate to the directory Seng_401_Project/src/main/java/com/ucalgary/LibrarySystemApplication.java 
 3. Run the LibrarySystemApplication.java file.
 4. Open the Web Browser(Chrome or Firefox).
-5. Type "loclahost:12345" in the URL field.
+5. Type "localhost:12345" in the URL field.
 
 # User Login 
 The user login can be logged in by using the following credentials
