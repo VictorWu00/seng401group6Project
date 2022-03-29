@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/heroes/">
+    <title>Rate Page</title>
+
+<!-- Bootstrap core CSS -->
+<link href="bootstrap.min.css" rel="stylesheet">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    <!-- Custom styles for this template
+    <link href="heroes.css" rel="stylesheet"> -->
+  </head>
+  <body>
+<main>
+
+  <div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a href="UserPage" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+        <span class="fs-4"><strong>User Page -- <label th:text="${name}"></label></strong></span>
+      </a>
+
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a href="UserSearch" class="nav-link " aria-current="page">Search Books</a></li>
+        <li class="nav-item"><a href="UserRent" class="nav-link">Rent Book</a></li>
+        <li class="nav-item"><a href="UserRate" class="nav-link">Rate Book</a></li>
+        <li class="nav-item"><a href="UserInfo" class="nav-link">User Information</a></li>
+        <li class="nav-item"><a href="homepage" onclick ='loadmessage()' class="nav-link">Logout</a></li>
+      </ul>
+    </header>
+  </div>
+<body  style="background-color:rgba(42, 185, 196, 0.616);">
+</body>
+
+    <script>
+function loadmessage() {
+    alert('Logout Successful');
+}
+</script>
+
+<script>
+  function loadRate(){
+    if(document.getElementById("1").checked){
+      return "1";
+    }
+    else if(document.getElementById("2").checked){
+      return "2";
+    }
+    else if(document.getElementById("3").checked){
+      return "3";
+    }
+    else if(document.getElementById("4").checked){
+      return "4";
+    }
+    else if(document.getElementById("5").checked){
+      return "5";
+    }
+  }
+</script>
+
+<center>
+<h2 style="position:relative; left:0px; top:50px; font-size:30px;">Review Form</h2>
+<p style="position:relative; left:-30px; top:70px;"><span class="error">* required field</span></p>
+
+  <label style="position:relative; left:45px; top:100px;">*Book ID: </label>
+  <input type="text" id="book" name="book" style="position:relative; left:45px; top:100px;">
+  <button id="button"  style="position:relative; left:135px; top:100px; padding:1px 20px;" name="submit" onclick="location.href ='/checkBookName?book='+document.getElementById('book').value;">check book Availability</button>
+  </center>
+  <br><br>
+  <center>
+  <label style="position:relative; left:0px; top: 100px;">*Review: </label>
+  <textarea style="position:relative; left:10px; top:140px;" id ="description" name="description" rows="5" cols="40"></textarea>
+  </center>
+  <center>
+  <br><br>
+  <label style="position:relative; left:-50px; top:150px;">*Rating (in stars):</label>
+  <input style="position:relative; left:-50px; top:150px;" type="radio" id="1" name="rating" value="1">
+  <label style="position:relative; left:-65px; top:170px;">1</label>
+  <input style="position:relative; left:0px; top:150px;" type="radio" id="2" name="rating" value="2">
+  <label style="position:relative; left:-15px; top:170px;">2</label>
+  <input style="position:relative; left:50px; top:150px;" type="radio" id="3" name="rating" value="3">
+  <label style="position:relative; left:35px; top:170px;">3</label>
+  <input style="position:relative; left:100px; top:150px;" type="radio" id="4" name="rating" value="4">
+  <label style="position:relative; left:85px; top:170px;">4</label>
+  <input style="position:relative; left:150px; top:150px;" type="radio" id="5" name="rating" value="5">
+  <label style="position:relative; left:135px; top:170px;">5</label>
+  <br><br>
+  </center>
+
+  <center>
+  <!-- <button id = "button2" style="position:relative; left:0px; top:200px; padding:10px 20px;" name="submit"
+  onclick="location.href='/postReview?book='+documents.getElementById('book').value +
+  '&description='+documents.getElementById('description').value + '&rating='+docuemnts.getElementById('rating').value";>Submit</button>  -->
+  <button id="Mbutton" style="position:relative; left:0px; top:200px; padding:10px 20px;" name="submit" onclick="location.href ='/postReview?book='+document.getElementById('book').value +
+  '&rating='+ loadRate() + '&description='+document.getElementById('description').value;">Submit</button>
+  </center>
+
+
+</html>

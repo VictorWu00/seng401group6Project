@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/heroes/">
+    <title>Rent Page</title>
+
+<!-- Bootstrap core CSS -->
+<link href="bootstrap.min.css" rel="stylesheet">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    <!-- Custom styles for this template
+    <link href="heroes.css" rel="stylesheet"> -->
+  </head>
+  <body>
+<main>
+
+  <div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a href="UserPage" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+        <span class="fs-4"><strong>User Page -- <label th:text="${name}"></label></strong></span>
+      </a>
+
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a href="UserSearch" class="nav-link " aria-current="page">Search Books</a></li>
+        <li class="nav-item"><a href="UserRent" class="nav-link">Rent Book</a></li>
+        <li class="nav-item"><a href="UserRate" class="nav-link">Rate Book</a></li>
+        <li class="nav-item"><a href="UserInfo" class="nav-link">User Information</a></li>
+        <li class="nav-item"><a href="homepage" onclick ='loadmessage()' class="nav-link">Logout</a></li>
+      </ul>
+    </header>
+  </div>
+<body  style="background-color:rgba(42, 185, 196, 0.616);">
+</body>
+
+    <script>
+function loadmessage() {
+    alert('Logout Successful');
+}
+</script>
+<center>
+  <h1>Rent Book</h1>
+</center>
+<center>
+  <p style="position:relative; left:-150px; top:70px;"><span class="error">* required field</span></p>
+  </center>
+  <center>
+  <label style="position:relative; left:35px; top:100px;">*Book ID: </label>
+  <input type="text" id="book" name="book" style="position:relative; left:135px; top:100px;">
+  <button id="button"  style="position:relative; left:135px; top:100px; padding:1px 20px;" name="submit" onclick="location.href ='/UserRentError?book='+document.getElementById('book').value;">check book Availability</button>
+  </center>
+  <center>
+  <label style="position:relative; left:-70px; top:200px;">*Start Date: </label>
+  <input type="date" id ="sdate" name="sdate" style="position:relative; left: 25px; top:200px;">
+</center>
+  <center>
+  <label style="position:relative; left:-70px; top:300px;">*End Date: </label>
+  <input type="date" id="edate" name="edate" style="position:relative; left:25px; top:300px;">
+</center>
+  <br><br>
+  <center>
+  <button id="Mbutton" style="position:relative; left:0px; top:350px; padding:10px 20px;" name="submit" onclick="location.href ='/UserRent2?book='+document.getElementById('book').value +
+    '&sdate='+document.getElementById('sdate').value + '&edate='+document.getElementById('edate').value;">Submit</button>
+  </center>
+ 
+</html>
