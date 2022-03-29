@@ -91,11 +91,15 @@ public class adminloginController {
 
     @RequestMapping("/ModifyU")
     public String jumpToModifyU(Model model, @RequestParam(name = "a", required = false) String address, @RequestParam(name = "b", required = false) String phone, @RequestParam(name = "d", required = false) String Balance, @RequestParam(name = "e", required = false) String name){
-        try{
-            double i=Double.parseDouble(phone);
-        }catch(NumberFormatException e){
-            return "WrongPhoneNumberFormat";
+        if(!phone.equals("*"))
+        {
+            try {
+                double i = Double.parseDouble(phone);
+            } catch (NumberFormatException e) {
+                return "WrongPhoneNumberFormat";
+            }
         }
+
         if(address.equals("") || phone.equals("") || Balance.equals("") || name.equals(""))
         {
             return "errorForModifyU";
