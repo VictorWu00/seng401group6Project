@@ -13,6 +13,8 @@ Guest can search any book from the library homepage.
 
 # Installation
 1. Clone the repository from github using the following command:
+
+
   git clone https://github.com/VictorWu00/seng401group6Project.git
 
 # How to Run:
